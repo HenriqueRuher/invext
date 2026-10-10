@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-f5Lt7i4dkU/Z89C8YSXydg+ccc/9FKbUAciQcno3I7o='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fcOPPrTPLTJxdc1W7ngy9LGRCby4RYiIPJO2P7gYdgI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#0b6a4d">
 <meta name="description" content="Invext: controle financeiro pessoal, projeção de investimentos e notificações.">
@@ -155,6 +155,27 @@ button:focus-visible,input:focus-visible,select:focus-visible,label:focus-within
 .lock .go{width:100%;height:50px;border-radius:14px;font-weight:700;font-size:15px;display:flex;gap:8px;align-items:center;justify-content:center}
 .lock .go .i{width:20px;height:20px}
 .err{color:var(--neg);font-size:13px;min-height:18px}
+/* install banner (only in a browser tab, never inside Claude or once installed) */
+.inst{position:relative;overflow:hidden;isolation:isolate;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:12px;padding:14px 10px 14px 14px;border-radius:var(--r);background:linear-gradient(135deg,#0f3a2b,#0b2a1f);color:#eaf6f0;box-shadow:0 16px 32px -18px rgba(11,42,31,.9);animation:instIn .5s cubic-bezier(.3,1.3,.5,1) both}
+.inst::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.13) 50%,transparent 60%);transform:translateX(-100%);animation:instSheen 5s 1.2s ease-in-out infinite}
+.inst::after{content:"";position:absolute;z-index:-1;right:-34px;top:-40px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(245,184,46,.3),transparent 65%);pointer-events:none}
+.inst .logo{width:46px;height:46px;border-radius:13px;box-shadow:0 0 0 1px rgba(255,255,255,.14),0 6px 14px -6px rgba(0,0,0,.6)}
+.inst b{display:block;font-family:var(--f-display);font-size:15.5px;letter-spacing:-.01em}
+.inst small{display:block;font-size:12.5px;color:rgba(234,246,240,.72);line-height:1.35}
+.inst .ibtn{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 15px 0 12px;border-radius:99px;background:#3ddc97;color:#04241a;font-weight:700;font-size:13.5px;white-space:nowrap;box-shadow:0 8px 18px -8px rgba(61,220,151,.8);transition:transform .15s,box-shadow .15s}
+.inst .ibtn:hover{transform:translateY(-1px);box-shadow:0 10px 22px -8px rgba(61,220,151,.95)}
+.inst .ibtn .i{width:18px;height:18px;stroke-width:2.4}
+.inst .ix{width:30px;height:30px;border-radius:99px;display:grid;place-items:center;color:rgba(234,246,240,.6)}
+.inst .ix:hover{background:rgba(255,255,255,.1);color:#fff}
+.inst .ix .i{width:16px;height:16px}
+@media (max-width:380px){.inst{grid-template-columns:auto 1fr auto;padding-right:14px}.inst .ix{position:absolute;top:4px;right:4px;width:26px;height:26px}.inst .ibtn span{display:none}.inst .ibtn{padding:0;width:40px;justify-content:center}}
+@keyframes instIn{from{opacity:0;transform:translateY(-8px) scale(.98)}}
+@keyframes instSheen{0%{transform:translateX(-100%)}30%,100%{transform:translateX(100%)}}
+.steps{display:flex;flex-direction:column;gap:10px;counter-reset:st}
+.steps div{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:12px;padding:12px;border-radius:12px;background:var(--surface-2);font-size:14.5px}
+.steps div::before{counter-increment:st;content:counter(st);width:30px;height:30px;border-radius:99px;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);font-weight:700}
+.steps .i{color:var(--accent);width:22px;height:22px}
+@media (prefers-reduced-motion:reduce){.inst,.inst::before{animation:none}}
 .about{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:22px 16px}
 .about .logo{width:64px;height:64px}
 .about h3{margin:4px 0 0;font-weight:700;font-size:28px;letter-spacing:-.04em}
@@ -539,10 +560,12 @@ info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.7v.3"/>',
 cols:'<rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="11" rx="1.5"/><rect x="17" y="4" width="4" height="7" rx="1.5"/>',
 list:'<path d="M9 6h12M9 12h12M9 18h12"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
 lock:'<rect x="4.5" y="10.5" width="15" height="10.5" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><path d="M12 14.5v2.5"/>',
+share:'<path d="M12 3v12M8 7l4-4 4 4"/><path d="M7 10H6a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1h-1"/>',
+plusSq:'<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/>',
 gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/>',
 };
 const LOGO=(cls='')=>`<svg class="logo ${cls}" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="url(#lgA)"/><path class="lg-ghost" pathLength="1" d="M14 14L21 21M27 27L34 34"/><path class="lg-up" pathLength="1" d="M14 34L30.5 17.5"/><path class="lg-head" d="M24.5 11.5H36.5V23.5Z"/><circle class="lg-dot" cx="36.5" cy="11.5" r="2.6"/></svg>`;
-const APP_VERSION='1.6';
+const APP_VERSION='1.7';
 const ic=(n,cls='')=>`<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[n]||ICONS.dots}</svg>`;
 
 const CAT_ICONS=['home','utensils','car','heart','book','game','bag','zap','phone','paw','gift','plane','coffee','shirt','dumbbell','tv','briefcase','dots'];
@@ -730,6 +753,31 @@ function sheetImportPw(box){
   }));
 }
 
+/* ---------- install as an app (browser tab only) ---------- */
+let BIP=null;
+const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const isInstalled=()=>matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches||navigator.standalone===true;
+const canInstall=()=>!window.claude&&/^https?:$/.test(location.protocol)&&!isInstalled()&&(!!BIP||isIOS);
+const INST_KEY='invext-install-later';
+function installSnoozed(){try{return Date.now()-(+localStorage.getItem(INST_KEY)||0)<14*864e5}catch(e){return false}}
+function installBanner(){
+  if(!canInstall()||installSnoozed())return '';
+  const phone=matchMedia('(pointer:coarse)').matches;
+  return `<div class="inst" role="region" aria-label="Instalar o app">${LOGO()}<div><b>Instale o Invext</b><small>${phone?'Ícone na tela inicial, tela cheia e funciona sem internet.':'Abra como um app no computador, mesmo sem internet.'}</small></div>
+    <button class="ibtn" data-act="install">${ic(isIOS&&!BIP?'share':'download')}<span>${isIOS&&!BIP?'Como instalar':'Instalar'}</span></button>
+    <button class="ix" data-act="installLater" data-tip="Agora não" aria-label="Agora não">${ic('x')}</button></div>`;
+}
+function sheetIOSInstall(){
+  openSheet('Instalar no iPhone','download',`<div class="stack"><div class="steps">
+    <div><span>Abra este endereço no <b>Safari</b></span>${ic('globe')}</div>
+    <div><span>Toque em <b>Compartilhar</b>, na barra de baixo</span>${ic('share')}</div>
+    <div><span>Role e toque em <b>Adicionar à Tela de Início</b></span>${ic('plusSq')}</div>
+    <div><span>Toque em <b>Adicionar</b>, no canto superior</span>${ic('check')}</div></div>
+    <div class="note">Pronto: o Invext aparece junto dos seus apps, abre em tela cheia e funciona sem internet. Seus dados continuam só no aparelho.</div></div>`);
+}
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();BIP=e;if(S.ready)render()});
+window.addEventListener('appinstalled',()=>{BIP=null;if(S.ready){render();toast('Invext instalado! Procure o ícone nos seus apps.')}});
+
 /* ---------- calculations ---------- */
 let memo={};
 function calc(ym){
@@ -858,7 +906,7 @@ function catRow(c,amount,max){return `<div class="cbar" style="--c:var(--c${c.co
 function vHome(){
   const c=S.cfg,r=calc(S.ym),ci=carryIn(S.ym),m=S.months[S.ym]||emptyMonth();
   const hasAny=c.incomes.length||c.bills.length||Object.keys(S.months).length||c.investments.length;
-  let h='<div class="stack">';
+  let h='<div class="stack">'+installBanner();
   if(c.demo)h+=`<div class="banner">${ic('flask')}<span>Você está vendo <b>dados de exemplo</b>.</span><button class="btn" data-act="clearAll">${ic('reset')}Começar do zero</button></div>`;
   h+=`<div class="card hero" data-tip="Sobra do mês: entradas − contas − gastos − investimentos">${ic('wallet','bg')}
     <div class="k">${ic('wallet')}Sobra de ${MESES_L[+S.ym.slice(5)-1]}</div>
@@ -1224,7 +1272,7 @@ function vSettings(){
   <label class="fld" data-tip="Mês a partir do qual o acumulado é contado" style="margin-top:8px">${ic('calendar')}<input type="month" id="startMonth" value="${c.startMonth}" aria-label="Início do acumulado"></label></div>
   <div class="sec"><h2>${ic('cloud')}Dados</h2></div>
   <div class="card"><div class="note" style="margin-bottom:10px">${S.mode==='cloud'?'Seus lançamentos ficam salvos na sua conta Claude e aparecem igual no PC e no celular. Só você vê esses dados.':`Seus dados ficam salvos só neste aparelho, sem login. Use <b>Exportar</b> para guardar um arquivo de backup (no celular, escolha Arquivos, Drive ou WhatsApp) e <b>Importar</b> para levá-los a outro aparelho.${S.cfg.lastBackup?` Último backup: ${new Date(S.cfg.lastBackup).toLocaleDateString('pt-BR')}.`:' Você ainda não fez nenhum backup.'}`}</div>
-  <div class="empty acts" style="padding:0;justify-content:flex-start"><button class="btn" data-act="export">${ic('download')}Exportar</button><button class="btn" data-act="import">${ic('upload')}Importar</button><button class="btn" data-act="demo">${ic('flask')}Dados de exemplo</button><button class="btn danger" data-act="clearAll">${ic('trash')}Apagar tudo</button></div></div>
+  <div class="empty acts" style="padding:0;justify-content:flex-start">${canInstall()?`<button class="btn pri" data-act="install">${ic('device')}Instalar app</button>`:''}<button class="btn" data-act="export">${ic('download')}Exportar</button><button class="btn" data-act="import">${ic('upload')}Importar</button><button class="btn" data-act="demo">${ic('flask')}Dados de exemplo</button><button class="btn danger" data-act="clearAll">${ic('trash')}Apagar tudo</button></div></div>
   ${S.mode==='local'&&canCrypt()?`<div class="sec"><h2>${ic('lock')}Senha</h2></div><div class="card">${LOCK.key?`<div class="note" style="margin-bottom:10px">${ic('check','')} Seus dados e backups estão <b>criptografados</b>. O app pede a senha ao abrir e depois de 5 minutos fora dele.</div><div class="empty acts" style="padding:0;justify-content:flex-start"><button class="btn" data-act="lockNow">${ic('lock')}Bloquear agora</button><button class="btn" data-act="changePw">${ic('key')}Trocar senha</button><button class="btn danger" data-act="removePw">${ic('x')}Remover senha</button></div>`:`<div class="note" style="margin-bottom:10px">Proteja os dados deste aparelho e os arquivos de backup com uma senha. Sem ela, ninguém consegue ler seus dados.</div><button class="btn pri" data-act="setPw">${ic('lock')}Proteger com senha</button>`}</div>`:''}
   <div class="note" style="text-align:center">No PC, pare o mouse sobre um ícone para ver o nome. No celular, segure o dedo sobre ele.</div>
   <div class="sec"><h2>${ic('heart')}Sobre</h2></div>
@@ -1432,6 +1480,8 @@ const ACT={
   kopen:v=>sheetKOpen(v),
   kstack:()=>{S.kOpen=!S.kOpen;render()},
   undo:kUndo,
+  install:async()=>{if(!BIP){sheetIOSInstall();return}const e=BIP;BIP=null;try{await e.prompt();const r=await e.userChoice;if(r&&r.outcome!=='accepted')BIP=null}catch(_){}render()},
+  installLater:()=>{try{localStorage.setItem(INST_KEY,String(Date.now()))}catch(e){}render();toast('Você pode instalar depois em Ajustes')},
   newEntry:()=>openSheet('Novo lançamento','plus',`<div class="stack" style="gap:4px">${[
     ['addExp','minus','var(--neg)','Gasto','Mercado, restaurante, farmácia…'],
     ['addExtra','plus','var(--pos)','Entrada do mês','Bônus, venda, reembolso…'],
