@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-c13RNTlmUZ2EehYl0HrZRaVyyQvP6Ykrs0KO9rNATG8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-f5Lt7i4dkU/Z89C8YSXydg+ccc/9FKbUAciQcno3I7o='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#0b6a4d">
 <meta name="description" content="Invext: controle financeiro pessoal, projeção de investimentos e notificações.">
@@ -86,7 +86,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webki
 button:focus-visible,input:focus-visible,select:focus-visible,label:focus-within{outline:2px solid var(--accent);outline-offset:2px}
 .i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .num{font-variant-numeric:tabular-nums}
-.app{max-width:560px;margin:0 auto;padding-inline:16px;padding-block:0 110px}
+.app{max-width:560px;margin:0 auto;padding-inline:16px;padding-block:0 170px}
 
 /* top bar */
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;align-items:center;gap:8px;padding-block:12px 10px}
@@ -173,11 +173,14 @@ button:focus-visible,input:focus-visible,select:focus-visible,label:focus-within
 /* bottom nav */
 .nav{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
 .nav-in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);padding:6px 8px}
-.tab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;border-radius:12px;color:var(--muted)}
-.tab span{font-size:11px;font-weight:600;height:14px;opacity:0;transition:opacity .15s}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:2px 0 4px;border-radius:12px;color:var(--muted);min-width:0;min-height:52px}
+.tab .ind{display:grid;place-items:center;width:56px;height:30px;border-radius:99px;transition:background .2s}
+.tab span{font-size:11px;font-weight:600;line-height:14px;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .tab.on{color:var(--accent)}
-.tab.on span{opacity:1}
-.tab.on .i{stroke-width:2.2}
+.tab.on .ind{background:var(--accent-soft)}
+.tab.on span{font-weight:700}
+.tab.on .i{stroke-width:2.2;fill:color-mix(in srgb,currentColor 18%,transparent)}
+@media (max-width:340px){.tab .ind{width:44px}}
 .fab{position:fixed;z-index:7;right:max(16px,calc(50% - 264px));bottom:calc(84px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:20px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;box-shadow:var(--shadow)}
 .fab .i{width:28px;height:28px;stroke-width:2.2}
 
@@ -187,7 +190,13 @@ button:focus-visible,input:focus-visible,select:focus-visible,label:focus-within
 .sec{display:flex;align-items:center;gap:8px;margin-top:6px}
 .sec h2{font-family:var(--f-display);font-size:16px;font-weight:700;margin:0;margin-right:auto;letter-spacing:-.01em;display:flex;align-items:center;gap:8px;color:var(--ink)}
 .sec h2 .i{color:var(--muted);width:19px;height:19px}
-.add{width:34px;height:34px;border-radius:11px;background:var(--accent-soft);color:var(--accent)}
+.add{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:4px;height:36px;padding:0 12px 0 9px;border-radius:11px;background:var(--accent-soft);color:var(--accent);font-weight:600;font-size:13px;flex:none}
+.add .i{width:18px;height:18px;stroke-width:2.2}
+.add::after{content:"";position:absolute;inset:-6px -2px}
+@media (max-width:380px){.add span{display:none}.add{width:40px;padding:0}}
+.fab-opt .ico{width:42px;height:42px;border-radius:13px}
+.fab-opt .ico .i{width:22px;height:22px;stroke-width:2.1}
+.fab-opt b{font-size:15px}
 .add:hover{background:var(--accent);color:var(--accent-ink)}
 
 .hero{background:var(--accent);color:var(--accent-ink);border:0;padding:18px 18px 16px;position:relative;overflow:hidden}
@@ -452,7 +461,7 @@ textarea{width:100%;min-height:120px;border-radius:12px;border:1px solid var(--l
   <header class="top" id="top"></header>
   <main id="view"><div class="loading"><svg class="i" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9"/></svg></div></main>
 </div>
-<button class="fab" id="fab" data-act="addExp" data-tip="Novo gasto variável" aria-label="Novo gasto variável" hidden></button>
+<button class="fab" id="fab" data-act="newEntry" data-tip="Novo lançamento" aria-label="Novo lançamento" hidden></button>
 <nav class="nav"><div class="nav-in" id="nav"></div></nav>
 <div class="sheet" id="sheet" hidden><div class="scrim" data-act="close"></div><div class="panel" id="panel" role="dialog" aria-modal="true"></div></div>
 <div class="tip" id="tip" hidden></div>
@@ -533,7 +542,7 @@ lock:'<rect x="4.5" y="10.5" width="15" height="10.5" rx="2"/><path d="M8 10.5V7
 gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/>',
 };
 const LOGO=(cls='')=>`<svg class="logo ${cls}" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="url(#lgA)"/><path class="lg-ghost" pathLength="1" d="M14 14L21 21M27 27L34 34"/><path class="lg-up" pathLength="1" d="M14 34L30.5 17.5"/><path class="lg-head" d="M24.5 11.5H36.5V23.5Z"/><circle class="lg-dot" cx="36.5" cy="11.5" r="2.6"/></svg>`;
-const APP_VERSION='1.5';
+const APP_VERSION='1.6';
 const ic=(n,cls='')=>`<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[n]||ICONS.dots}</svg>`;
 
 const CAT_ICONS=['home','utensils','car','heart','book','game','bag','zap','phone','paw','gift','plane','coffee','shirt','dumbbell','tv','briefcase','dots'];
@@ -823,12 +832,12 @@ function invTotals(list){const cur=sum(list,v=>v.current),ap=sum(list,invApplied
 
 /* ---------- rendering ---------- */
 const $=s=>document.querySelector(s);
-const TABS=[['home','home','Resumo'],['month','calendar','Lançamentos'],['invest','trend','Investimentos'],['proj','compass','Projeção'],['charts','chart','Gráficos']];
+const TABS=[['home','home','Resumo','Resumo do mês'],['month','calendar','Extrato','Entradas, contas e gastos do mês'],['invest','trend','Carteira','Investimentos e projetos'],['proj','compass','Projeção','Quanto e onde investir'],['charts','chart','Gráficos','Comparar meses e anos']];
 function render(){
   memo={};
   if(!S.ready)return;
   const won=autoDone();
-  $('#nav').innerHTML=TABS.map(([id,i,l])=>`<button class="tab ${S.tab===id?'on':''}" data-act="tab" data-v="${id}" data-tip="${l}" aria-label="${l}">${ic(i)}<span>${l}</span></button>`).join('');
+  $('#nav').innerHTML=TABS.map(([id,i,l,d])=>`<button class="tab ${S.tab===id?'on':''}" data-act="tab" data-v="${id}" data-tip="${d}" ${S.tab===id?'aria-current="page"':''}><span class="ind">${ic(i)}</span><span>${l}</span></button>`).join('');
   const showMonth=S.tab==='home'||S.tab==='month';
   const yearNav=S.tab==='charts';
   hideSplash();
@@ -837,7 +846,7 @@ function render(){
     ${yearNav?`<div class="mnav"><button class="ib" data-act="yr" data-v="-1" data-tip="Ano anterior" aria-label="Ano anterior">${ic('chevL')}</button><span class="lbl">${S.year}</span><button class="ib" data-act="yr" data-v="1" data-tip="Próximo ano" aria-label="Próximo ano">${ic('chevR')}</button></div>`:''}
     <span style="display:flex;gap:2px"><button class="ib bell ${S.tab==='alerts'?'on':''}" data-act="tab" data-v="alerts" data-tip="Notificações" aria-label="Notificações">${ic('bell')}${(n=>n?`<span class="badge">${n>9?'9+':n}</span>`:'')(activeAlerts().length)}</button>
     <button class="ib ${S.tab==='settings'?'on':''}" data-act="tab" data-v="settings" data-tip="Ajustes" aria-label="Ajustes">${ic('gear')}</button></span>`;
-  const fab=$('#fab');fab.hidden=!(S.tab==='home'||(S.tab==='month'&&S.sub==='var'));fab.innerHTML=ic('plus');
+  const fab=$('#fab');fab.hidden=!(S.tab==='home'||S.tab==='month');fab.innerHTML=ic('plus');
   const v=$('#view');
   v.innerHTML=({home:vHome,month:vMonth,invest:vInvest,proj:vProj,alerts:vAlerts,charts:vCharts,settings:vSettings})[S.tab]();
   drawCharts();
@@ -879,7 +888,7 @@ function vHome(){
   }
   const recent=[...(m.expenses||[])].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,6);
   h+=`<div class="sec"><h2>${ic('cart')}Últimos gastos</h2></div><div class="card">`;
-  h+=recent.length?recent.map(expRow).join(''):`<div class="empty">${ic('cart')}Toque no + verde para registrar um gasto.</div>`;
+  h+=recent.length?recent.map(expRow).join(''):`<div class="empty">${ic('cart')}Toque no + verde para lançar um gasto.</div>`;
   return h+'</div></div>';
 }
 
@@ -893,14 +902,14 @@ function vMonth(){
     <button class="${S.sub==='fix'?'on':''}" data-act="sub" data-v="fix" data-tip="Contas fixas">${ic('repeat')}${short(r.fix)}</button>
     <button class="${S.sub==='var'?'on':''}" data-act="sub" data-v="var" data-tip="Gastos variáveis">${ic('cart')}${short(r.vari)}</button></div>`;
   if(S.sub==='inc'){
-    h+=`<div class="sec"><h2>${ic('repeat')}Entradas fixas</h2><button class="ib add" data-act="addIncome" data-tip="Nova entrada fixa (todo mês)" aria-label="Nova entrada fixa">${ic('plus')}</button></div><div class="card">`;
+    h+=`<div class="sec"><h2>${ic('repeat')}Entradas fixas</h2><button class="add" data-act="addIncome" data-tip="Nova entrada fixa (todo mês)" aria-label="Nova entrada fixa">${ic('plus')}<span>Adicionar</span></button></div><div class="card">`;
     h+=r.incs.length?r.incs.map(x=>`<div class="row click" data-act="editIncome" data-v="${x.id}" style="--c:var(--c1)"><span class="ico">${ic(x.icon||'briefcase')}</span><div class="txt"><div class="t1">${esc(x.name)}</div><div class="t2">todo mês desde ${ymLabel(x.start).toLowerCase()}</div></div><span class="v">${money(x.amount)}</span></div>`).join(''):`<div class="empty">${ic('inArrow')}Nenhuma entrada fixa ativa neste mês.</div>`;
-    h+=`</div><div class="sec"><h2>${ic('plus')}Entradas extras deste mês</h2><button class="ib add" data-act="addExtra" data-tip="Entrada só deste mês" aria-label="Nova entrada extra">${ic('plus')}</button></div><div class="card">`;
+    h+=`</div><div class="sec"><h2>${ic('plus')}Entradas extras deste mês</h2><button class="add" data-act="addExtra" data-tip="Entrada só deste mês" aria-label="Nova entrada extra">${ic('plus')}<span>Adicionar</span></button></div><div class="card">`;
     h+=m.extras?.length?m.extras.map(x=>`<div class="row click" data-act="editExtra" data-v="${x.id}" style="--c:var(--c3)"><span class="ico">${ic('coins')}</span><div class="txt"><div class="t1">${esc(x.name)}</div><div class="t2">só em ${ymLabel(S.ym).toLowerCase()}</div></div><span class="v">${money(x.amount)}</span></div>`).join(''):`<div class="empty">${ic('coins')}Bônus, vendas, reembolsos… entram aqui.</div>`;
     h+='</div>';
   }else if(S.sub==='fix'){
     const paid=r.bills.filter(b=>m.paid?.[b.id]);
-    h+=`<div class="sec"><h2>${ic('repeat')}Contas fixas</h2><span class="note num" data-tip="Pagas / total">${paid.length}/${r.bills.length}</span>${r.bills.length?viewToggle('bview',c.billView||'list'):''}<button class="ib add" data-act="addBill" data-tip="Nova conta fixa (todo mês)" aria-label="Nova conta fixa">${ic('plus')}</button></div><div class="card">`;
+    h+=`<div class="sec"><h2>${ic('repeat')}Contas fixas</h2><span class="note num" data-tip="Pagas / total">${paid.length}/${r.bills.length}</span>${r.bills.length?viewToggle('bview',c.billView||'list'):''}<button class="add" data-act="addBill" data-tip="Nova conta fixa (todo mês)" aria-label="Nova conta fixa">${ic('plus')}<span>Adicionar</span></button></div><div class="card">`;
     if(r.bills.length&&c.billView==='board')h=h.replace(/<div class="card">$/,'')+billBoard(r,m);
     else{h+=r.bills.length?[...r.bills].sort((a,b)=>(a.day||99)-(b.day||99)).map(b=>billRow(b,m)).join(''):`<div class="empty">${ic('receipt')}Aluguel, internet, academia… cadastre uma vez e elas se repetem todo mês.</div>`;
     h+='</div>';}
@@ -925,12 +934,12 @@ function vInvest(){
     h+=`<div class="alloc">${arr.map(x=>`<i style="--c:var(--c${x.color});flex:${x.v}" data-tip="${esc(x.name)}: ${money(x.v)} (${(x.v/t.cur*100).toFixed(0)}%)"></i>`).join('')}</div><div class="legend">${arr.map(x=>`<span style="--c:var(--c${x.color})">${esc(x.name)} ${(x.v/t.cur*100).toFixed(0)}%</span>`).join('')}</div>`;
   }
   h+='</div>';
-  h+=`<div class="sec"><h2>${ic('target')}Projetos</h2><button class="ib add" data-act="addProject" data-tip="Novo projeto / objetivo" aria-label="Novo projeto">${ic('plus')}</button></div>`;
+  h+=`<div class="sec"><h2>${ic('target')}Projetos</h2><button class="add" data-act="addProject" data-tip="Novo projeto / objetivo" aria-label="Novo projeto">${ic('plus')}<span>Adicionar</span></button></div>`;
   if(c.projects.length){
     h+='<div class="proj">'+c.projects.map(p=>{const pt=invTotals(inv.filter(v=>v.projectId===p.id));const pct=p.goal?Math.min(100,pt.cur/p.goal*100):0;
       return `<button class="pc" data-act="editProject" data-v="${p.id}"><div class="h">${ic(p.icon||'target')}<b>${esc(p.name)}</b></div><div class="val">${money0(pt.cur)}</div>${p.goal?`<div class="prog"><i style="width:${pct}%"></i></div><div class="meta"><span>${pct.toFixed(0)}%</span><span>meta ${short(p.goal)}</span></div>`:`<div class="meta"><span>sem meta</span></div>`}</button>`}).join('')+'</div>';
   }else h+=`<div class="card empty">${ic('target')}Crie projetos como “Reserva de emergência”, “Viagem” ou “Aposentadoria” e ligue seus investimentos a eles.</div>`;
-  h+=`<div class="sec"><h2>${ic('landmark')}Onde está investido</h2><button class="ib add" data-act="addInv" data-tip="Novo investimento" aria-label="Novo investimento">${ic('plus')}</button></div><div class="card">`;
+  h+=`<div class="sec"><h2>${ic('landmark')}Onde está investido</h2><button class="add" data-act="addInv" data-tip="Novo investimento" aria-label="Novo investimento">${ic('plus')}<span>Adicionar</span></button></div><div class="card">`;
   if(inv.length){
     const proj=id=>c.projects.find(p=>p.id===id);
     h+=[...inv].sort((a,b)=>(b.current||0)-(a.current||0)).map(v=>{const ty=invType(v.type),ap=invApplied(v),g=(v.current||0)-ap,p=proj(v.projectId);
@@ -980,7 +989,7 @@ function vProj(){
     <div class="note" style="margin-top:10px">${msg}</div></div>`;
   if(!c.projects.some(isReserva)&&avgOut>0)h+=`<button class="banner alert-banner" data-act="newReserva" style="--s:var(--accent)">${ic('shield')}<span><b>Comece pela reserva de emergência.</b> O ideal são 6 meses dos seus gastos: ${money0(avgOut*6)}.</span>${ic('plus')}</button>`;
   const pv=c.projView||'board';
-  h+=`<div class="sec"><h2>${ic('target')}Seus projetos</h2>${ps.length?viewToggle('pview',pv):''}<button class="ib add" data-act="addProject" data-tip="Novo projeto / objetivo" aria-label="Novo projeto">${ic('plus')}</button></div>`;
+  h+=`<div class="sec"><h2>${ic('target')}Seus projetos</h2>${ps.length?viewToggle('pview',pv):''}<button class="add" data-act="addProject" data-tip="Novo projeto / objetivo" aria-label="Novo projeto">${ic('plus')}<span>Adicionar</span></button></div>`;
   h+=ordered.length?(pv==='board'?projBoard(ordered):ordered.map(projCard).join('')):`<div class="card empty">${ic('target')}Crie um projeto com meta e prazo, como “Viagem em dezembro de 2027: R$ 12.000”.<div class="acts"><button class="btn pri" data-act="addProject">${ic('plus')}Novo projeto</button></div></div>`;
   h+=`<div class="sec"><h2>${ic('chart')}Simulador</h2></div><div class="card stack">
     <div class="sim"><label class="fld" data-tip="Aporte mensal">${ic('plus')}<span class="note">R$</span><input id="sim_pmt" inputmode="decimal" value="${numIn(S.sim.pmt)}" aria-label="Aporte mensal"></label>
@@ -1208,7 +1217,7 @@ document.addEventListener('pointermove',e=>{
 function vSettings(){
   const c=S.cfg;
   return `<div class="stack">
-  <div class="sec"><h2>${ic('tag')}Categorias</h2><button class="ib add" data-act="addCat" data-tip="Nova categoria" aria-label="Nova categoria">${ic('plus')}</button></div>
+  <div class="sec"><h2>${ic('tag')}Categorias</h2><button class="add" data-act="addCat" data-tip="Nova categoria" aria-label="Nova categoria">${ic('plus')}<span>Adicionar</span></button></div>
   <div class="card">${c.categories.map(x=>`<div class="row click" data-act="editCat" data-v="${x.id}" style="--c:var(--c${x.color})"><span class="ico">${ic(x.icon)}</span><div class="txt"><div class="t1">${esc(x.name)}</div></div>${ic('pencil')}</div>`).join('')}</div>
   <div class="sec"><h2>${ic('carry')}Saldo</h2></div>
   <div class="card"><button class="toggle" data-act="carry" style="width:100%;text-align:left">${ic('carry')}<span><b>Acumular a sobra</b><br><span class="note">O que sobra (ou falta) num mês passa para o seguinte.</span></span><span class="sw2 ${c.carry?'on':''}"></span></button>
@@ -1423,6 +1432,15 @@ const ACT={
   kopen:v=>sheetKOpen(v),
   kstack:()=>{S.kOpen=!S.kOpen;render()},
   undo:kUndo,
+  newEntry:()=>openSheet('Novo lançamento','plus',`<div class="stack" style="gap:4px">${[
+    ['addExp','minus','var(--neg)','Gasto','Mercado, restaurante, farmácia…'],
+    ['addExtra','plus','var(--pos)','Entrada do mês','Bônus, venda, reembolso…'],
+    ['aporte','trend','var(--c1)','Aporte em investimento','Dinheiro que vai para CDB, Tesouro, ações…'],
+    ['addBill','repeat','var(--c2)','Conta fixa','Se repete todo mês: aluguel, internet…'],
+    ['addIncome','briefcase','var(--c3)','Entrada fixa','Se repete todo mês: salário…']
+  ].map(([a,i,c,t,d])=>`<button class="wr fab-opt" data-act="${a}" style="--c:${c}"><span class="ico">${ic(i)}</span><span><b style="font-weight:600">${t}</b><small>${d}</small></span>${ic('chevR')}</button>`).join('')}</div>`),
+  aporte:()=>{const inv=S.cfg.investments;if(!inv.length){sheetInv();return}
+    openSheet('Aporte em…','trend',`<div class="stack" style="gap:4px">${[...inv].sort((a,b)=>(b.current||0)-(a.current||0)).map(v=>{const t=invType(v.type);return `<button class="wr" data-act="move" data-v="${v.id}:1" style="--c:var(--c${t.color})"><span class="ico">${ic(t.icon)}</span><span><b style="font-weight:600">${esc(v.name)}</b><small>${money(v.current)}</small></span>${ic('chevR')}</button>`}).join('')}<button class="btn" data-act="addInv" style="margin-top:8px;align-self:flex-start">${ic('plus')}Novo investimento</button></div>`)},
   setPw:()=>sheetSetPw(),changePw:()=>sheetChangePw(false),removePw:()=>sheetChangePw(true),lockNow:()=>lockNow(),
   forgotPw:(v,b)=>{b.dataset.ico='trash';if(!armed(b))return;try{localStorage.removeItem(LS_KEY)}catch(e){}location.reload()},
   setValue:sheetValue,
