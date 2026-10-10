@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="512" height="512">
+  <title>Invext</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f3a2b"/>
+      <stop offset="1" stop-color="#0b2a1f"/>
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="13" fill="url(#bg)"/>
+  <path d="M14 14L21 21M27 27L34 34" fill="none" stroke="#ffffff" stroke-opacity=".55" stroke-width="6.5" stroke-linecap="round"/>
+  <path d="M14 34L30.5 17.5" fill="none" stroke="#3ddc97" stroke-width="6.5" stroke-linecap="round"/>
+  <path d="M24.5 11.5H36.5V23.5Z" fill="#3ddc97" stroke="#3ddc97" stroke-width="1.5" stroke-linejoin="round"/>
+  <circle cx="36.5" cy="11.5" r="2.6" fill="#f5b82e"/>
+</svg>
