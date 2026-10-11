@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-sm2oqIZX8J/uj/HbitAcd90cX5WJenXchzK6WpeHBdU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-7Yeaxxt6A12XaqXwa0rtFnF9BAStdlsxrvtAe2ACk3I='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
-<meta name="invext-build" content="03f680a370">
+<meta name="invext-build" content="ca3517a3ec">
 <meta name="theme-color" content="#eaf0ec" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0b110e" media="(prefers-color-scheme: dark)">
 <meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
@@ -561,6 +561,7 @@ copy:'<rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 
 note:'<path d="M4 4h16v12l-4 4H4z"/><path d="M8 9h8M8 13h5"/>',
 hash:'<path d="M5 9h15M4 15h15M10 3 8 21M16 3l-2 18"/>',
 bank:'<path d="M3 21h18M4 10h16M12 3l8 5H4z"/><path d="M6 10v8M10 10v8M14 10v8M18 10v8"/>',
+moon:'<path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/>',
 sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
 pin:'<path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
 bell:'<path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/>',
@@ -575,11 +576,13 @@ plusSq:'<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8
 gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/>',
 };
 const LOGO=(cls='')=>`<svg class="logo ${cls}" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="url(#lgA)"/><path class="lg-ghost" pathLength="1" d="M14 14L21 21M27 27L34 34"/><path class="lg-up" pathLength="1" d="M14 34L30.5 17.5"/><path class="lg-head" d="M24.5 11.5H36.5V23.5Z"/><circle class="lg-dot" cx="36.5" cy="11.5" r="2.6"/></svg>`;
-const APP_VERSION='1.8';
+const APP_VERSION='1.9';
 const ic=(n,cls='')=>`<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[n]||ICONS.dots}</svg>`;
 
 const CAT_ICONS=['home','utensils','car','heart','book','game','bag','zap','phone','paw','gift','plane','coffee','shirt','dumbbell','tv','briefcase','dots'];
 const INC_ICONS=[['briefcase','Salário'],['laptop','Freela'],['key','Aluguel'],['coins','Rendimentos'],['gift','Presente / bônus'],['wallet','Outros']];
+// names shown when hovering (PC) or holding (phone) a symbol in the pickers
+const ICON_PT={home:'Casa',utensils:'Alimentação',car:'Carro',heart:'Saúde',book:'Educação',game:'Lazer',bag:'Compras',zap:'Energia / contas',phone:'Celular / internet',paw:'Pets',gift:'Presentes',plane:'Viagem',coffee:'Café / lanches',shirt:'Roupas',dumbbell:'Academia',tv:'Streaming / TV',briefcase:'Trabalho',dots:'Outros',target:'Meta',shield:'Reserva de emergência',sun:'Férias',pin:'Lugar'};
 const PROJ_ICONS=['target','shield','home','car','plane','book','heart','gift','briefcase','game','sun','pin'];
 const INV_TYPES=[
   {id:'cdb',name:'CDB / LCI / LCA',icon:'landmark',color:1},
@@ -655,6 +658,17 @@ async function flush(){
   if(dirty.size){clearTimeout(flushT);flushT=setTimeout(flush,900)}
 }
 function save(...keys){markDirty(...keys);render()}
+
+/* ---------- theme: auto (follows the system), light or dark; saved on this device ---------- */
+const THEME_KEY='invext-theme',DARK_MQ=matchMedia('(prefers-color-scheme: dark)');
+function getTheme(){try{const t=localStorage.getItem(THEME_KEY);return t==='light'||t==='dark'?t:'auto'}catch(e){return 'auto'}}
+function applyTheme(t){
+  const root=document.documentElement;if(t==='auto')delete root.dataset.theme;else root.dataset.theme=t;
+  const dark=t==='dark'||(t==='auto'&&DARK_MQ.matches);
+  document.querySelectorAll('meta[name="theme-color"]').forEach(m=>{m.removeAttribute('media');m.content=dark?'#0b110e':'#eaf0ec'});
+}
+applyTheme(getTheme());
+DARK_MQ.addEventListener?.('change',()=>{if(getTheme()==='auto'){applyTheme('auto');if(S.ready)render()}});
 
 function loadLocal(){
   let d=null;try{d=JSON.parse(localStorage.getItem(LS_KEY)||'null')}catch(e){}
@@ -1292,6 +1306,9 @@ function vSettings(){
   <div class="sec"><h2>${ic('carry')}Saldo</h2></div>
   <div class="card"><button class="toggle" data-act="carry" style="width:100%;text-align:left">${ic('carry')}<span><b>Acumular a sobra</b><br><span class="note">O que sobra (ou falta) num mês passa para o seguinte.</span></span><span class="sw2 ${c.carry?'on':''}"></span></button>
   <label class="fld" data-tip="Mês a partir do qual o acumulado é contado" style="margin-top:8px">${ic('calendar')}<input type="month" id="startMonth" value="${c.startMonth}" aria-label="Início do acumulado"></label></div>
+  <div class="sec"><h2>${ic('sun')}Aparência</h2></div>
+  <div class="card"><div class="chips" role="radiogroup" aria-label="Tema">${[['auto','device','Automático'],['light','sun','Claro'],['dark','moon','Escuro']].map(([v,i,l])=>`<button class="chip ${getTheme()===v?'on':''}" role="radio" aria-checked="${getTheme()===v}" data-act="theme" data-v="${v}">${ic(i)}${l}</button>`).join('')}</div>
+  <div class="note" style="margin-top:8px">Automático segue o tema do celular ou do computador.</div></div>
   <div class="sec"><h2>${ic('cloud')}Dados</h2></div>
   <div class="card"><div class="note" style="margin-bottom:10px">${S.mode==='cloud'?'Seus lançamentos ficam salvos na sua conta Claude e aparecem igual no PC e no celular. Só você vê esses dados.':`Seus dados ficam salvos só neste aparelho, sem login. Use <b>Exportar</b> para guardar um arquivo de backup (no celular, escolha Arquivos, Drive ou WhatsApp) e <b>Importar</b> para levá-los a outro aparelho.${S.cfg.lastBackup?` Último backup: ${new Date(S.cfg.lastBackup).toLocaleDateString('pt-BR')}.`:' Você ainda não fez nenhum backup.'}`}</div>
   <div class="empty acts" style="padding:0;justify-content:flex-start">${canInstall()?`<button class="btn pri" data-act="install">${ic('device')}Instalar app</button>`:''}<button class="btn" data-act="export">${ic('download')}Exportar</button><button class="btn" data-act="import">${ic('upload')}Importar</button><button class="btn" data-act="demo">${ic('flask')}Dados de exemplo</button><button class="btn danger" data-act="clearAll">${ic('trash')}Apagar tudo</button></div></div>
@@ -1367,7 +1384,7 @@ function sheetBill(id){
 function sheetCat(id){
   const x=id?S.cfg.categories.find(z=>z.id===id):null;
   openSheet(x?'Editar categoria':'Nova categoria','tag',form(`${fText('f_name','tag','Nome da categoria',x?.name)}
-    ${fPick('icon',CAT_ICONS.map(i=>({id:i,icon:i,name:i})),x?.icon||'dots').replace(/<div class="pick-name">.*?<\/div>/,'')}
+    ${fPick('icon',CAT_ICONS.map(i=>({id:i,icon:i,name:ICON_PT[i]||i})),x?.icon||'dots').replace(/<div class="pick-name">.*?<\/div>/,'')}
     ${fPick('color',[1,2,3,4,5,6,7,8,9].map(n=>({id:String(n),name:'Cor '+n,color:n,sw:true})),String(x?.color||1)).replace(/<div class="pick-name">.*?<\/div>/,'')}
     ${acts(x&&x.id!=='outros'&&'delCat',id)}`,()=>{
     const nm=val('f_name');if(!nm){toast('Dê um nome à categoria');return}
@@ -1379,7 +1396,7 @@ function sheetProject(id,pre){
   const x=id?S.cfg.projects.find(z=>z.id===id):null,d=x||pre||{};
   const linked=x?S.cfg.investments.filter(v=>v.projectId===x.id):[];
   openSheet(x?'Projeto':'Novo projeto','target',form(`${fText('f_name','target','Nome (ex.: Reserva de emergência)',d.name)}
-    ${fPick('icon',PROJ_ICONS.map(i=>({id:i,icon:i,name:i})),d.icon||'target').replace(/<div class="pick-name">.*?<\/div>/,'')}
+    ${fPick('icon',PROJ_ICONS.map(i=>({id:i,icon:i,name:ICON_PT[i]||i})),d.icon||'target').replace(/<div class="pick-name">.*?<\/div>/,'')}
     <div class="two"><label class="fld" data-tip="Meta">${ic('target')}<span class="note">R$</span><input id="f_goal" inputmode="decimal" placeholder="Meta" value="${numIn(d.goal)}" aria-label="Meta"></label>${fText('f_dl','calendar','Prazo',d.deadline||'','month')}</div>
     ${fPick('prof',Object.entries(PROFILES).map(([k,v])=>({id:k,name:'Perfil '+v.name.toLowerCase(),icon:v.icon})),d.profile||'moderado')}
     <label class="fld" data-tip="Rendimento esperado ao ano (vazio = padrão do perfil)">${ic('trend')}<input id="f_rate" inputmode="decimal" placeholder="Rendimento esperado (padrão do perfil)" value="${d.rate?String(d.rate).replace('.',','):''}" aria-label="Rendimento esperado"><span class="note">% a.a.</span></label>
@@ -1502,6 +1519,7 @@ const ACT={
   kopen:v=>sheetKOpen(v),
   kstack:()=>{S.kOpen=!S.kOpen;render()},
   undo:kUndo,
+  theme:(v)=>{try{if(v==='auto')localStorage.removeItem(THEME_KEY);else localStorage.setItem(THEME_KEY,v)}catch(e){}applyTheme(v);render()},
   update:()=>applyUpdate(),
   updateLater:()=>{UPD.dismissed=true;closeSheet()},
   install:async()=>{if(!BIP){sheetIOSInstall();return}const e=BIP;BIP=null;try{await e.prompt();const r=await e.userChoice;if(r&&r.outcome!=='accepted')BIP=null}catch(_){}render()},
