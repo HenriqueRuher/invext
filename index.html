@@ -3,18 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fcOPPrTPLTJxdc1W7ngy9LGRCby4RYiIPJO2P7gYdgI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-sm2oqIZX8J/uj/HbitAcd90cX5WJenXchzK6WpeHBdU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
-<meta name="theme-color" content="#0b6a4d">
+<meta name="invext-build" content="03f680a370">
+<meta name="theme-color" content="#eaf0ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b110e" media="(prefers-color-scheme: dark)">
+<meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
 <meta name="description" content="Invext: controle financeiro pessoal, projeção de investimentos e notificações.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Invext">
-<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Invext</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,16 +32,19 @@
   --f-display:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
   --f-body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
   --r:16px; --gold:#e9a90c; --warn:#a96f00;
+  --hero-neg:#b93434; --hero-neg-ink:#ffffff; --hero-zero:#66726c; --hero-zero-ink:#ffffff;
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --bg:#0b110e; --surface:#141c18; --surface-2:#1e2924; --ink:#e8efeb; --ink-2:#b0bfb7; --muted:#7c8b84; --line:#26322c;
   --accent:#3ec497; --accent-ink:#04241a; --accent-soft:#15352a; --pos:#3bc672; --neg:#ef6d6d; --shadow:0 10px 30px -12px rgba(0,0,0,.7);
   --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181; --c6:#008300; --c7:#9085e9; --c8:#e66767; --c9:#66716c; --warn:#f0b429;
+  --hero-neg:#ef6d6d; --hero-neg-ink:#2b0606; --hero-zero:#3a4641; --hero-zero-ink:#e8efeb;
   color-scheme:dark }}
 :root[data-theme="dark"]{
   --bg:#0b110e; --surface:#141c18; --surface-2:#1e2924; --ink:#e8efeb; --ink-2:#b0bfb7; --muted:#7c8b84; --line:#26322c;
   --accent:#3ec497; --accent-ink:#04241a; --accent-soft:#15352a; --pos:#3bc672; --neg:#ef6d6d; --shadow:0 10px 30px -12px rgba(0,0,0,.7);
   --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181; --c6:#008300; --c7:#9085e9; --c8:#e66767; --c9:#66716c; --warn:#f0b429;
+  --hero-neg:#ef6d6d; --hero-neg-ink:#2b0606; --hero-zero:#3a4641; --hero-zero-ink:#e8efeb;
   color-scheme:dark }
 
 *{box-sizing:border-box}
@@ -226,6 +233,9 @@ button:focus-visible,input:focus-visible,select:focus-visible,label:focus-within
 .hero .carry{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:13px;opacity:.92}
 .hero .carry span{display:inline-flex;align-items:center;gap:5px}
 .hero .carry .i{width:16px;height:16px}
+.hero{transition:background-color .3s,color .3s}
+.hero.neg{background:var(--hero-neg);color:var(--hero-neg-ink)}
+.hero.zero{background:var(--hero-zero);color:var(--hero-zero-ink)}
 .hero svg.bg{position:absolute;right:-18px;top:-18px;width:130px;height:130px;opacity:.12;stroke-width:1.2}
 
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
@@ -565,7 +575,7 @@ plusSq:'<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8
 gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/>',
 };
 const LOGO=(cls='')=>`<svg class="logo ${cls}" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="url(#lgA)"/><path class="lg-ghost" pathLength="1" d="M14 14L21 21M27 27L34 34"/><path class="lg-up" pathLength="1" d="M14 34L30.5 17.5"/><path class="lg-head" d="M24.5 11.5H36.5V23.5Z"/><circle class="lg-dot" cx="36.5" cy="11.5" r="2.6"/></svg>`;
-const APP_VERSION='1.7';
+const APP_VERSION='1.8';
 const ic=(n,cls='')=>`<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[n]||ICONS.dots}</svg>`;
 
 const CAT_ICONS=['home','utensils','car','heart','book','game','bag','zap','phone','paw','gift','plane','coffee','shirt','dumbbell','tv','briefcase','dots'];
@@ -757,20 +767,31 @@ function sheetImportPw(box){
 let BIP=null;
 const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
 const isInstalled=()=>matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches||navigator.standalone===true;
-const canInstall=()=>!window.claude&&/^https?:$/.test(location.protocol)&&!isInstalled()&&(!!BIP||isIOS);
+const isIPad=/ipad/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+// Safari on a Mac (macOS Sonoma+) installs web apps with File > Add to Dock; it never fires beforeinstallprompt
+const isMacSafari=!isIOS&&/Macintosh/.test(navigator.userAgent)&&/Version\/\d+.*Safari/.test(navigator.userAgent)&&!/Chrome|Chromium|Edg|Firefox|OPR/.test(navigator.userAgent);
+const canInstall=()=>!window.claude&&/^https?:$/.test(location.protocol)&&!isInstalled()&&(!!BIP||isIOS||isMacSafari);
 const INST_KEY='invext-install-later';
 function installSnoozed(){try{return Date.now()-(+localStorage.getItem(INST_KEY)||0)<14*864e5}catch(e){return false}}
 function installBanner(){
   if(!canInstall()||installSnoozed())return '';
   const phone=matchMedia('(pointer:coarse)').matches;
   return `<div class="inst" role="region" aria-label="Instalar o app">${LOGO()}<div><b>Instale o Invext</b><small>${phone?'Ícone na tela inicial, tela cheia e funciona sem internet.':'Abra como um app no computador, mesmo sem internet.'}</small></div>
-    <button class="ibtn" data-act="install">${ic(isIOS&&!BIP?'share':'download')}<span>${isIOS&&!BIP?'Como instalar':'Instalar'}</span></button>
+    <button class="ibtn" data-act="install">${ic(isIOS&&!BIP?'share':'download')}<span>${(isIOS||isMacSafari)&&!BIP?'Como instalar':'Instalar'}</span></button>
     <button class="ix" data-act="installLater" data-tip="Agora não" aria-label="Agora não">${ic('x')}</button></div>`;
 }
 function sheetIOSInstall(){
-  openSheet('Instalar no iPhone','download',`<div class="stack"><div class="steps">
+  if(isMacSafari){
+    openSheet('Instalar no Mac','download',`<div class="stack"><div class="steps">
+      <div><span>No Safari, abra o menu <b>Arquivo</b> (ou toque em <b>Compartilhar</b>)</span>${ic('share')}</div>
+      <div><span>Clique em <b>Adicionar ao Dock</b></span>${ic('plusSq')}</div>
+      <div><span>Confirme em <b>Adicionar</b></span>${ic('check')}</div></div>
+      <div class="note">O Invext abre em janela própria pelo Dock ou pelo Launchpad e funciona sem internet. Precisa do macOS Sonoma (14) ou mais novo.</div></div>`);
+    return;
+  }
+  openSheet(isIPad?'Instalar no iPad':'Instalar no iPhone','download',`<div class="stack"><div class="steps">
     <div><span>Abra este endereço no <b>Safari</b></span>${ic('globe')}</div>
-    <div><span>Toque em <b>Compartilhar</b>, na barra de baixo</span>${ic('share')}</div>
+    <div><span>Toque em <b>Compartilhar</b>, ${isIPad?'no canto superior':'na barra de baixo'}</span>${ic('share')}</div>
     <div><span>Role e toque em <b>Adicionar à Tela de Início</b></span>${ic('plusSq')}</div>
     <div><span>Toque em <b>Adicionar</b>, no canto superior</span>${ic('check')}</div></div>
     <div class="note">Pronto: o Invext aparece junto dos seus apps, abre em tela cheia e funciona sem internet. Seus dados continuam só no aparelho.</div></div>`);
@@ -908,8 +929,9 @@ function vHome(){
   const hasAny=c.incomes.length||c.bills.length||Object.keys(S.months).length||c.investments.length;
   let h='<div class="stack">'+installBanner();
   if(c.demo)h+=`<div class="banner">${ic('flask')}<span>Você está vendo <b>dados de exemplo</b>.</span><button class="btn" data-act="clearAll">${ic('reset')}Começar do zero</button></div>`;
-  h+=`<div class="card hero" data-tip="Sobra do mês: entradas − contas − gastos − investimentos">${ic('wallet','bg')}
-    <div class="k">${ic('wallet')}Sobra de ${MESES_L[+S.ym.slice(5)-1]}</div>
+  const cents=Math.round(r.result*100),mes=MESES_L[+S.ym.slice(5)-1];
+  h+=`<div class="card hero${cents<0?' neg':cents===0?' zero':''}" data-tip="Sobra do mês: entradas − contas − gastos − investimentos">${ic('wallet','bg')}
+    <div class="k">${ic('wallet')}${cents<0?'No vermelho em':cents===0?'Zerado em':'Sobra de'} ${mes}</div>
     <div class="big num">${money(r.result)}</div>
     ${c.carry?`<div class="carry"><span data-tip="Acumulado dos meses anteriores">${ic('carry')}${money(ci)} acumulado</span><span data-tip="Disponível = acumulado + sobra do mês">${ic('check')}${money(ci+r.result)} disponível</span></div>`:''}
   </div>`;
@@ -1480,6 +1502,8 @@ const ACT={
   kopen:v=>sheetKOpen(v),
   kstack:()=>{S.kOpen=!S.kOpen;render()},
   undo:kUndo,
+  update:()=>applyUpdate(),
+  updateLater:()=>{UPD.dismissed=true;closeSheet()},
   install:async()=>{if(!BIP){sheetIOSInstall();return}const e=BIP;BIP=null;try{await e.prompt();const r=await e.userChoice;if(r&&r.outcome!=='accepted')BIP=null}catch(_){}render()},
   installLater:()=>{try{localStorage.setItem(INST_KEY,String(Date.now()))}catch(e){}render();toast('Você pode instalar depois em Ajustes')},
   newEntry:()=>openSheet('Novo lançamento','plus',`<div class="stack" style="gap:4px">${[
@@ -1602,6 +1626,37 @@ let rzT=null;window.addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTime
 if(!window.claude&&/^https?:$/.test(location.protocol)){
   if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
   try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
+}
+
+/* ---------- update check: the build writes version.json next to the app; a different build id means a newer app ---------- */
+const UPD={build:document.querySelector('meta[name="invext-build"]')?.content||'',at:0,dismissed:false,shown:''};
+async function checkUpdate(){
+  if(!UPD.build||window.claude||!navigator.onLine||UPD.dismissed||Date.now()-UPD.at<10*6e4)return;
+  UPD.at=Date.now();
+  let v;try{const r=await fetch('version.json',{cache:'no-store'});if(!r.ok)return;v=await r.json()}catch(e){return}
+  if(!v||!v.build||v.build===UPD.build)return;
+  // one reload already tried for this build and the old page came back: don't nag in a loop
+  try{if(sessionStorage.getItem('invext-upd-tried')===v.build)return}catch(e){}
+  if(!S.ready||!$('#sheet').hidden||UPD.shown===v.build){UPD.at=0;return}
+  UPD.shown=v.build;
+  openSheet('Nova versão disponível','download',`<div class="stack"><div class="note">A versão <b>${esc(String(v.version||''))}</b> do Invext está pronta${v.version===APP_VERSION?' (correções e ajustes)':''}. Você está na ${APP_VERSION}. Atualizar leva só um instante e seus dados continuam no aparelho.</div>
+    <div class="acts"><button class="btn" data-act="updateLater">Depois</button><button class="btn pri" data-act="update">${ic('download')}Atualizar agora</button></div></div>`);
+}
+async function applyUpdate(){
+  toast('Atualizando…');
+  try{
+    const b=await fetch('version.json',{cache:'no-store'}).then(r=>r.json()).then(v=>v.build);sessionStorage.setItem('invext-upd-tried',b);
+    // refresh the browser's HTTP cache too, so the reload can't bring back the old page
+    await Promise.all(['./','index.html','sw.js'].map(u=>fetch(u,{cache:'reload'}).catch(()=>{})));
+    const reg=await navigator.serviceWorker?.getRegistration();if(reg)await reg.update();
+    const ks=await caches.keys();await Promise.all(ks.filter(k=>k.startsWith('invext-')).map(k=>caches.delete(k)));
+  }catch(e){}
+  location.reload();
+}
+if(UPD.build){
+  setTimeout(checkUpdate,3500); // after the splash
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')checkUpdate()}); // iPhone keeps the app open in the background
+  window.addEventListener('online',checkUpdate);
 }
 const BOOT_AT=Date.now();let splashGone=false;
 function hideSplash(){if(splashGone)return;splashGone=true;const wait=Math.max(0,(matchMedia('(prefers-reduced-motion: reduce)').matches?1500:3000)-(Date.now()-BOOT_AT));

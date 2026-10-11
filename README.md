@@ -18,6 +18,10 @@ Controle financeiro pessoal: entradas e contas fixas, gastos variáveis, sobra a
 2. Toque em **Compartilhar** (quadrado com seta para cima).
 3. Toque em **Adicionar à Tela de Início**.
 
+**Mac (Safari, macOS Sonoma ou mais novo)**
+1. Abra o link acima no **Safari**.
+2. Menu **Arquivo → Adicionar ao Dock**.
+
 O ícone do Invext aparece junto dos outros apps e funciona mesmo sem internet.
 
 ### Seus dados
