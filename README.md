@@ -27,7 +27,7 @@ O ícone do Invext aparece junto dos outros apps e funciona mesmo sem internet.
 ### Seus dados
 
 - Ficam **só no seu aparelho**. Nada é enviado para servidor nenhum.
-- Faça backup em *Ajustes → Exportar* e guarde o arquivo no Drive ou nos Arquivos.
+- Faça backup em *Configurações → Exportar* e guarde o arquivo no Drive ou nos Arquivos.
 - Opcional: proteja os dados com senha em *Ajustes → Senha* (AES-256-GCM, chave derivada por PBKDF2-SHA256 com 600 mil iterações). Sem a senha, os dados não podem ser recuperados.
 
 Criado por Henrique Ruher.

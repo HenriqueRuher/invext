@@ -1,7 +1,7 @@
 {
   "name": "Invext",
   "short_name": "Invext",
-  "description": "Controle financeiro pessoal: entradas, contas, gastos, investimentos e projeção.",
+  "description": "Controle financeiro pessoal: entradas, contas, gastos, investimentos e planejamento.",
   "lang": "pt-BR",
   "start_url": "./",
   "scope": "./",

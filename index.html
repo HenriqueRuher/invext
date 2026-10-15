@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-7Yeaxxt6A12XaqXwa0rtFnF9BAStdlsxrvtAe2ACk3I='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-pPv26tvddD3IzQKbDKKHwaw/7v+5lVYJ/T4t63Ec2EY='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
-<meta name="invext-build" content="ca3517a3ec">
+<meta name="invext-build" content="4da81efcc7">
 <meta name="theme-color" content="#eaf0ec" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0b110e" media="(prefers-color-scheme: dark)">
 <meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
-<meta name="description" content="Invext: controle financeiro pessoal, projeção de investimentos e notificações.">
+<meta name="description" content="Invext: controle financeiro pessoal, planejamento de investimentos e notificações.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-180.png">
@@ -84,6 +84,50 @@
 .sim .fld{min-width:0}.sim input{width:100%}
 @media (max-width:480px){.sim{grid-template-columns:1fr 1fr}.sim .fld:first-child{grid-column:1/-1}}
 @media (max-width:460px){.sim{grid-template-columns:1fr}}
+.gd-ico{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;flex:none;background:color-mix(in srgb,var(--c) 16%,transparent);color:var(--c)}
+.gd-ico .i{width:20px;height:20px}
+.learn-cta{display:grid;grid-template-columns:38px 1fr auto;gap:12px;align-items:center;text-align:left;width:100%;padding:12px;border-radius:14px;background:var(--accent-soft)}
+.learn-cta b{display:block}.learn-cta small{display:block;font-size:12.5px;color:var(--muted);margin-top:1px}.learn-cta>.i{color:var(--accent)}
+.lr-list{display:flex;flex-direction:column;gap:6px}
+.lr{border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.lr[open]{border-color:color-mix(in srgb,var(--c) 45%,var(--line))}
+.lr summary{display:flex;align-items:center;gap:12px;padding:10px 12px 10px 10px;cursor:pointer;list-style:none;user-select:none}
+.lr summary::-webkit-details-marker{display:none}
+.lr summary b{flex:1;font-size:16px}
+.lr-chev{color:var(--muted);transition:transform .18s}.lr[open] .lr-chev{transform:rotate(90deg)}
+.lr-body{display:flex;flex-direction:column;gap:12px;padding:2px 14px 14px;line-height:1.45}
+.lr-sig{display:flex;flex-direction:column;gap:6px}
+.lr-sig div{display:flex;gap:10px;align-items:baseline;font-size:14px;color:var(--muted)}
+.lr-sig b{flex:none;padding:2px 8px;border-radius:7px;background:color-mix(in srgb,var(--c) 16%,transparent);color:var(--c);font-size:13px;letter-spacing:.02em}
+.lr-one{font-size:16.5px;font-weight:600}
+.lr-like{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--c) 12%,transparent);font-size:15px}
+.lr-like .i{width:18px;height:18px;margin-top:2px;color:var(--c)}
+.lr-tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.lr-tag{display:inline-flex;gap:5px;align-items:baseline;padding:5px 11px;border-radius:99px;background:var(--surface-2);font-size:13.5px;font-weight:600}
+.lr-tag small{color:var(--muted);font-weight:600}
+.lr-lines{display:flex;flex-direction:column;gap:9px;font-size:15px;color:var(--ink-2)}
+.lr-lines div{display:flex;gap:8px;align-items:flex-start}.lr-lines .i{width:18px;height:18px;margin-top:2px;color:var(--c)}
+.lr-rows{display:flex;flex-direction:column;border-radius:12px;background:var(--surface-2);padding:4px 12px;font-size:15px}
+.lr-rows div{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)}.lr-rows div:last-child{border:0}
+.lr-ir{display:flex;flex-direction:column;gap:9px;padding:12px 14px;border-radius:12px;border:1px dashed color-mix(in srgb,var(--c) 50%,var(--line))}
+.lr-pay{font-size:15px;font-weight:600}
+.lr-cmp{display:grid;grid-template-columns:auto 1fr 1fr;gap:0 10px;border-radius:12px;background:var(--surface-2);padding:4px 12px;font-size:14px}
+.lr-cmp>*{padding:7px 0;border-bottom:1px solid var(--line)}
+.lr-cmp>:nth-last-child(-n+3){border:0}
+.lr .calc{font-size:15px;gap:5px;padding:12px 14px}
+.lr-cmp b{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--c)}
+.lr-cmp small{font-size:13px;color:var(--muted);font-weight:600}
+.calc{display:flex;flex-direction:column;gap:3px;padding:10px 12px;border-radius:12px;background:var(--surface-2);font-size:13.5px;font-variant-numeric:tabular-nums}
+.calc .klabel{margin-bottom:3px}
+.cxg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 8px}
+@media (max-width:520px){.cxg{grid-template-columns:1fr 1fr}}
+.cxf{display:flex;flex-direction:column;gap:4px;min-width:0}
+.cxf small{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.cxf .fld{gap:8px;padding:0 10px}.cxf .note{white-space:nowrap}
+.cl{display:flex;justify-content:space-between;gap:12px;padding:4px 0;border-bottom:1px solid var(--line)}
+.cl span{color:var(--muted);flex:none}.cl b{font-weight:600;text-align:right;min-width:0}
+.cl.pos b{color:var(--pos)}.cl.neg b{color:var(--neg)}.cl.tot{border:0;padding-top:6px}.cl.tot b{font-weight:800;font-size:15px}
+@media (max-width:420px){.cl{flex-direction:column;gap:0}.cl b{text-align:left}}
 .chkline{display:flex;align-items:center;gap:10px;font-size:14px;padding:4px 2px;cursor:pointer}
 .chkline input{width:20px;height:20px;accent-color:var(--accent)}
 .alert-banner{width:100%;text-align:left;cursor:pointer}
@@ -381,7 +425,7 @@ body.dragging,body.dragging *{cursor:grabbing!important;user-select:none!importa
 @keyframes conf{0%{transform:translate(0,0) rotate(0)}35%{transform:translate(calc(var(--dx)*.6),var(--dy)) rotate(calc(var(--r)*.4))}100%{transform:translate(var(--dx),70vh) rotate(var(--r));opacity:0}}
 @media (prefers-reduced-motion:reduce){.kc,.ring .fg{transition:none}.kc.win{animation:none}}
 .toast{display:flex;align-items:center;gap:14px}
-.toast[hidden]{display:none}
+.toast[hidden],[hidden]{display:none!important}
 .toast button{color:inherit;font-weight:800;text-decoration:underline;text-underline-offset:3px;padding:2px 0}
 
 /* charts */
@@ -573,10 +617,10 @@ list:'<path d="M9 6h12M9 12h12M9 18h12"/><circle cx="4.5" cy="6" r="1"/><circle 
 lock:'<rect x="4.5" y="10.5" width="15" height="10.5" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><path d="M12 14.5v2.5"/>',
 share:'<path d="M12 3v12M8 7l4-4 4 4"/><path d="M7 10H6a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1h-1"/>',
 plusSq:'<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/>',
-gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/>',
+gear:'<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',
 };
 const LOGO=(cls='')=>`<svg class="logo ${cls}" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="url(#lgA)"/><path class="lg-ghost" pathLength="1" d="M14 14L21 21M27 27L34 34"/><path class="lg-up" pathLength="1" d="M14 34L30.5 17.5"/><path class="lg-head" d="M24.5 11.5H36.5V23.5Z"/><circle class="lg-dot" cx="36.5" cy="11.5" r="2.6"/></svg>`;
-const APP_VERSION='1.9';
+const APP_VERSION='2.0';
 const ic=(n,cls='')=>`<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[n]||ICONS.dots}</svg>`;
 
 const CAT_ICONS=['home','utensils','car','heart','book','game','bag','zap','phone','paw','gift','plane','coffee','shirt','dumbbell','tv','briefcase','dots'];
@@ -915,7 +959,7 @@ function invTotals(list){const cur=sum(list,v=>v.current),ap=sum(list,invApplied
 
 /* ---------- rendering ---------- */
 const $=s=>document.querySelector(s);
-const TABS=[['home','home','Resumo','Resumo do mês'],['month','calendar','Extrato','Entradas, contas e gastos do mês'],['invest','trend','Carteira','Investimentos e projetos'],['proj','compass','Projeção','Quanto e onde investir'],['charts','chart','Gráficos','Comparar meses e anos']];
+const TABS=[['home','home','Resumo','Resumo do mês'],['month','calendar','Extrato','Entradas, contas e gastos do mês'],['invest','trend','Carteira','Investimentos e projetos'],['proj','compass','Planejar','Metas, simulador, guia e calculadora'],['charts','chart','Gráficos','Comparar meses e anos']];
 function render(){
   memo={};
   if(!S.ready)return;
@@ -928,7 +972,7 @@ function render(){
     ${showMonth?`<div class="mnav"><button class="ib" data-act="ym" data-v="-1" data-tip="Mês anterior" aria-label="Mês anterior">${ic('chevL')}</button><span class="lbl" data-act="ymNow" data-tip="Voltar ao mês atual">${ymLabel(S.ym)}</span><button class="ib" data-act="ym" data-v="1" data-tip="Próximo mês" aria-label="Próximo mês">${ic('chevR')}</button></div>`:''}
     ${yearNav?`<div class="mnav"><button class="ib" data-act="yr" data-v="-1" data-tip="Ano anterior" aria-label="Ano anterior">${ic('chevL')}</button><span class="lbl">${S.year}</span><button class="ib" data-act="yr" data-v="1" data-tip="Próximo ano" aria-label="Próximo ano">${ic('chevR')}</button></div>`:''}
     <span style="display:flex;gap:2px"><button class="ib bell ${S.tab==='alerts'?'on':''}" data-act="tab" data-v="alerts" data-tip="Notificações" aria-label="Notificações">${ic('bell')}${(n=>n?`<span class="badge">${n>9?'9+':n}</span>`:'')(activeAlerts().length)}</button>
-    <button class="ib ${S.tab==='settings'?'on':''}" data-act="tab" data-v="settings" data-tip="Ajustes" aria-label="Ajustes">${ic('gear')}</button></span>`;
+    <button class="ib ${S.tab==='settings'?'on':''}" data-act="tab" data-v="settings" data-tip="Configurações" aria-label="Configurações">${ic('gear')}</button></span>`;
   const fab=$('#fab');fab.hidden=!(S.tab==='home'||S.tab==='month');fab.innerHTML=ic('plus');
   const v=$('#view');
   v.innerHTML=({home:vHome,month:vMonth,invest:vInvest,proj:vProj,alerts:vAlerts,charts:vCharts,settings:vSettings})[S.tab]();
@@ -1039,6 +1083,209 @@ function simOut(){
   CH.sim={type:'growth',labels:ap.map((_,i)=>i),ap,tot};
   return `<div class="kv"><div><small>Você terá</small><b>${money0(v)}</b></div><div><small>Aportou</small><b>${money0(ap[Y])}</b></div><div><small>Rendimento</small><b class="pos">+${money0(v-ap[Y])}</b></div></div>`;
 }
+// Beginner guide shown in a sheet. CDI/Selic 14% and quotes are example numbers only.
+// IR codes follow the Receita's IRPF program; the broker's informe de rendimentos is the source of truth.
+const LEARN_GROUPS=[['base','Primeiros passos','compass'],['inv','Investimentos','trend'],['cripto','Entenda cripto','hex'],['ir','Imposto de Renda','receipt']];
+const LEARN=[
+  {id:'rfrv',g:'base',name:'Renda fixa x variável',icon:'pie',color:5,one:'Todo investimento cai em uma dessas duas famílias.',
+    lines:[['shield','<b>Renda fixa:</b> você sabe antes a regra de quanto vai ganhar. Ex.: "rende 100% do CDI".'],['trend','<b>Renda variável:</b> ninguém sabe quanto vai render. Pode subir muito ou cair. Ex.: ações.']],
+    like:'Renda fixa é como um salário combinado. Renda variável é como ser dono de uma loja: pode lucrar muito, ou pouco.'},
+  {id:'selic',g:'base',name:'Taxa Selic',icon:'landmark',color:2,one:'É a taxa de juros "oficial" do Brasil. Quem decide é o Banco Central.',
+    lines:[['trend','Quando a Selic sobe, quase toda a renda fixa passa a render mais.'],['minus','Quando ela cai, a renda fixa rende menos.'],['calendar','Ela é revista a cada 45 dias, numa reunião chamada Copom.']],
+    like:'É como o "preço do dinheiro". Selic alta: guardar dinheiro compensa mais.',
+    calc:['Selic de 14% ao ano','R$ 1.000 × 14% = R$ 140 de juros','Depois de 1 ano: R$ 1.140 (antes do imposto)']},
+  {id:'cdi',g:'base',name:'CDI',icon:'repeat',color:1,one:'É a taxa que os bancos cobram quando emprestam dinheiro entre eles. Fica quase igual à Selic.',
+    lines:[['check','Quando um banco diz "100% do CDI", o seu dinheiro rende igual ao CDI.'],['plus','"110% do CDI" é melhor: rende 10% a mais que ele.'],['minus','"90% do CDI" rende um pouco menos que ele.']],
+    like:'É a régua que todo mundo usa para comparar renda fixa.',
+    calc:['CDI de 14% ao ano','110% do CDI = 14% × 1,10','= 15,4% ao ano']},
+  {id:'ipca',g:'base',name:'Inflação (IPCA)',icon:'cart',color:6,one:'É quanto as coisas ficaram mais caras. O IPCA é o número oficial que mede isso.',
+    lines:[['alert','Se o seu dinheiro rende menos que a inflação, você fica mais pobre, mesmo com mais reais na conta.']],
+    like:'Se o mercado do mês custava R$ 1.000 e agora custa R$ 1.050, a inflação foi de 5%.',
+    calc:['Seu dinheiro rendeu 10% no ano','Os preços subiram 5%','Você ficou de verdade ≈ 5% mais rico']},
+  {id:'liq',g:'base',name:'Liquidez',icon:'wallet',color:4,one:'É a rapidez para o dinheiro voltar para a sua conta quando você pede.',
+    lines:[['zap','<b>Diária:</b> pede hoje, o dinheiro cai hoje ou amanhã.'],['calendar','<b>D+2:</b> cai 2 dias úteis depois que você vende.'],['lock','<b>No vencimento:</b> o dinheiro fica preso até a data combinada.']],
+    like:'Para emergências, você precisa de liquidez diária.'},
+  {id:'fgc',g:'base',name:'FGC',icon:'shield',color:3,one:'É um seguro que devolve o seu dinheiro se o banco quebrar.',
+    lines:[['check','Cobre até R$ 250 mil por pessoa, em cada banco.'],['check','Protege CDB, LCI, LCA e poupança.'],['x','Não protege ações, fundos nem cripto.']],
+    like:'Você não paga nada por ele: já vem junto com o investimento.'},
+  {id:'juros',g:'base',name:'Juros compostos',icon:'chart',color:3,one:'São "juros sobre juros": o que o seu dinheiro rendeu também começa a render.',
+    lines:[['calendar','Quanto mais cedo você começa, maior o efeito.']],
+    like:'É como uma bola de neve descendo o morro: começa pequena e cresce cada vez mais rápido.',
+    calc:['R$ 500 por mês, por 10 anos, a 10% ao ano','Você coloca: 500 × 120 meses = R$ 60.000','Você termina com ≈ R$ 100.000']},
+
+  {id:'cdb',g:'inv',name:'CDB',icon:'landmark',color:1,risk:1,one:'Você empresta dinheiro para um banco. Em troca, ele te devolve com juros.',
+    like:'É como a poupança, só que costuma render mais.',
+    tags:[['Para sacar','Na hora ou no vencimento'],['Se o banco quebrar','FGC devolve']],
+    calc:['R$ 10.000 a 110% do CDI','10.000 × 15,4% = R$ 1.540 de juros','Imposto (17,5%): − R$ 269,50','Você ganha R$ 1.270,50 em 1 ano'],
+    pay:'Você não precisa fazer nada: o banco já desconta o imposto quando você tira o dinheiro.',decl:['Na ficha Bens e Direitos (código 04.02), informe quanto tinha em 31/12.','Na ficha Tributação Exclusiva (linha 06), informe quanto rendeu.']},
+  {id:'lci',g:'inv',name:'LCI e LCA',icon:'home',color:1,risk:1,one:'Funcionam como o CDB, mas o banco usa o dinheiro para financiar imóveis (LCI) ou o agronegócio (LCA).',
+    like:'A grande vantagem: não paga imposto de renda.',
+    tags:[['Para sacar','Só depois de um prazo mínimo'],['Se o banco quebrar','FGC devolve']],
+    calc:['R$ 10.000 a 90% do CDI','10.000 × 12,6% = R$ 1.260 de juros','Imposto: R$ 0','Você ganha R$ 1.260 em 1 ano'],
+    pay:'Não paga imposto.',decl:['Na ficha Bens e Direitos (código 04.03), informe quanto tinha em 31/12.','Na ficha Rendimentos Isentos (linha 12), informe quanto rendeu.']},
+  {id:'tesouro',g:'inv',name:'Tesouro Direto',icon:'shield',color:2,risk:1,one:'Você empresta dinheiro para o governo federal. É o investimento mais seguro do Brasil.',
+    like:'Dá para começar com uns R$ 30.',
+    tags:[['Para sacar','No dia útil seguinte'],['Quem garante','O governo']],
+    lines:[['shield','<b>Tesouro Selic:</b> rende a Selic e quase não oscila. Ótimo para a reserva de emergência.'],['calendar','<b>Prefixado:</b> você já sabe a taxa exata no dia da compra.'],['sun','<b>IPCA+:</b> rende a inflação mais um extra. Bom para a aposentadoria.']],
+    calc:['R$ 10.000 no Tesouro Selic','10.000 × 14% = R$ 1.400 de juros','Imposto (17,5%): − R$ 245','Você ganha R$ 1.155 em 1 ano'],
+    pay:'Você não precisa fazer nada: o imposto é descontado quando você vende.',decl:['Na ficha Bens e Direitos (código 04.02), informe o valor do informe.','Na ficha Tributação Exclusiva (linha 06), informe quanto rendeu.']},
+  {id:'acoes',g:'inv',name:'Ações',icon:'trend',color:3,risk:3,one:'Uma ação é um pedacinho de uma empresa. Comprando, você vira sócio dela.',
+    like:'Ex.: com BBAS3 você é sócio do Banco do Brasil. Com BBSE3, da BB Seguridade.',
+    tags:[['Para sacar','2 dias depois de vender'],['Se cair','Ninguém devolve']],
+    lines:[['trend','Você ganha se a ação ficar mais cara.'],['coins','E ganha dividendos: a parte do lucro que a empresa divide com os sócios.']],
+    calc:['100 ações BBAS3 × R$ 22 = R$ 2.200','Dividendos de 8% ao ano = R$ 176','Se a ação subir para R$ 25: + R$ 300'],
+    pay:'Se vender até R$ 20 mil no mês, não paga nada. Acima disso, com lucro, paga 15% numa guia chamada DARF (código 6015).',
+    decl:['Na ficha Bens e Direitos (código 03.01), informe quantas ações tem e quanto pagou por elas.','Dividendos: ficha Rendimentos Isentos (linha 09).','JCP: ficha Tributação Exclusiva (linha 10).','Vendas: ficha Renda Variável, mês a mês.']},
+  {id:'fii',g:'inv',name:'Fundos imobiliários (FIIs)',icon:'building',color:4,risk:2,one:'Você compra um pedacinho de imóveis grandes, como shoppings, galpões e prédios de escritório.',
+    like:'É como ter imóveis para alugar, mas começando com uns R$ 100 e sem dor de cabeça com inquilino.',
+    tags:[['Para sacar','2 dias depois de vender'],['Se cair','Ninguém devolve']],
+    lines:[['coins','Todo mês você recebe uma parte dos aluguéis na sua conta.'],['trend','O preço da cota sobe e desce, como uma ação.']],
+    calc:['100 cotas × R$ 100 = R$ 10.000','Rendendo 0,8% ao mês = R$ 80 por mês','80 × 12 = R$ 960 no ano, sem imposto'],
+    pay:'O aluguel mensal não paga imposto. Se vender as cotas com lucro, paga 20% numa DARF (código 6015).',
+    decl:['Na ficha Bens e Direitos (código 07.03), informe quantas cotas tem e quanto pagou.','Os aluguéis: ficha Rendimentos Isentos (linha 99).','Vendas: ficha Renda Variável, aba FII.']},
+  {id:'fundos',g:'inv',name:'Fundos de investimento',icon:'pie',color:5,risk:2,one:'Várias pessoas juntam dinheiro e um profissional (o gestor) investe por todas elas.',
+    like:'É como uma "vaquinha" administrada por um especialista, que cobra uma taxa por isso.',
+    tags:[['Para sacar','De 1 a 30 dias'],['Se der errado','Sem FGC']],
+    calc:['R$ 10.000 rendendo 13% = R$ 1.300','Taxa do gestor (1%): − R$ 100','Sobra R$ 1.200, antes do imposto'],
+    pay:'Você não precisa fazer nada: o imposto é descontado sozinho, inclusive em maio e novembro (o "come-cotas").',decl:['Na ficha Bens e Direitos (grupo 07), informe o saldo do informe.','Na ficha Tributação Exclusiva (linha 06), informe quanto rendeu.']},
+  {id:'previd',g:'inv',name:'Previdência (PGBL e VGBL)',icon:'sun',color:6,risk:2,one:'Um fundo feito para juntar dinheiro para a aposentadoria.',
+    like:'O PGBL ainda ajuda a pagar menos imposto hoje, se você faz a declaração completa.',
+    tags:[['Para sacar','Pensado para muitos anos'],['Se a empresa quebrar','Seu dinheiro fica separado']],
+    calc:['Ganha R$ 100.000 por ano','Coloca 12% no PGBL = R$ 12.000','12.000 × 27,5% = até R$ 3.300 a menos de imposto'],
+    pay:'O imposto é descontado quando você tira. Se deixar mais de 10 anos, cai para 10%.',decl:['PGBL: ficha Pagamentos Efetuados (código 36).','VGBL: ficha Bens e Direitos, com o saldo do informe.']},
+  {id:'etf',g:'inv',name:'ETFs e exterior',icon:'globe',color:8,risk:3,one:'Um ETF é uma cesta pronta com várias ações. Comprando uma cota, você leva todas de uma vez.',
+    like:'Ex.: o IVVB11 tem as 500 maiores empresas dos EUA. O BOVA11, as maiores do Brasil.',
+    tags:[['Para sacar','2 dias depois de vender'],['Se cair','Ninguém devolve']],
+    calc:['R$ 5.000 no IVVB11','Subiu 15,5% = + R$ 775','Imposto (15%): − R$ 116','Você ganha R$ 659'],
+    pay:'Paga 15% sobre o lucro numa DARF (código 6015). Aqui não existe a isenção de R$ 20 mil das ações.',decl:['Na ficha Bens e Direitos (grupo 07), informe quantas cotas tem e quanto pagou.','Vendas: ficha Renda Variável.']},
+  {id:'cripto',g:'inv',name:'Criptomoedas',icon:'hex',color:7,risk:3,one:'Dinheiro 100% digital, como o Bitcoin. Não existe banco nem governo controlando.',
+    like:'O preço muda o tempo todo, e às vezes muito: pode dobrar ou cair pela metade.',
+    tags:[['Para sacar','A qualquer hora'],['Se cair','Ninguém devolve']],
+    calc:['R$ 1.000 em Bitcoin','Caiu 50%: agora vale R$ 500','Para voltar a R$ 1.000, precisa subir 100%'],
+    pay:'Em corretora brasileira: vendeu até R$ 35 mil no mês, não paga nada. Acima disso, com lucro, paga 15% pelo programa GCAP.',
+    decl:['Na ficha Bens e Direitos (código 08.01 para Bitcoin, 08.02 para outras), informe quanto pagou.','Lucro sem imposto: ficha Rendimentos Isentos (linha 05).']},
+  {id:'poup',g:'inv',name:'Poupança',icon:'coins',color:9,risk:1,one:'A aplicação mais conhecida do Brasil. É simples, mas quase sempre rende menos que as outras.',
+    like:'Só rende uma vez por mês, no dia do "aniversário" do depósito.',
+    tags:[['Para sacar','Na hora'],['Se o banco quebrar','FGC devolve']],
+    calc:['R$ 10.000 na poupança = R$ 617 no ano','Os mesmos R$ 10.000 no Tesouro Selic = R$ 1.155'],
+    pay:'Não paga imposto.',decl:['Na ficha Bens e Direitos (código 04.01), informe quanto tinha em 31/12.','Na ficha Rendimentos Isentos (linha 12), informe quanto rendeu.']},
+
+  {id:'blockchain',g:'cripto',name:'Blockchain e mineração',icon:'cols',color:7,one:'O Bitcoin funciona com um "caderno de contas" público, copiado em milhares de computadores no mundo todo.',
+    lines:[['list','Cada página desse caderno se chama <b>bloco</b> e guarda as transferências de uns 10 minutos.'],['zap','Os <b>mineradores</b> são computadores que disputam quem resolve primeiro um cálculo muito difícil.'],['gift','Quem ganha escreve a próxima página e recebe bitcoins novos de prêmio. É assim que eles nascem.'],['lock','Para fraudar, alguém teria que vencer mais da metade da rede. Sai caro demais.'],['calendar','A cada 4 anos o prêmio cai pela metade. Isso se chama <b>halving</b>.']],
+    calc:['Prêmio de hoje: 3,125 BTC por bloco','1 bloco a cada 10 minutos = 144 por dia','144 × 3,125 = 450 bitcoins novos por dia']},
+  {id:'lastro',g:'cripto',name:'Lastro: Real x Bitcoin',icon:'coins',color:9,one:'Lastro é aquilo que dá valor a uma moeda. É o motivo de as pessoas aceitarem aquele dinheiro.',
+    lines:[['info','Antigamente, a nota de dinheiro podia ser trocada por ouro. Hoje, nenhum país faz isso.'],['landmark','O Real vale porque confiamos no governo e porque a lei obriga todo mundo a aceitá-lo.'],['hex','O Bitcoin também não tem ouro por trás. Vale porque é raro e porque as pessoas aceitam usá-lo.']],
+    cmp:{head:['Real','Bitcoin'],rows:[['Quem cria','Banco Central','A própria rede, pela mineração'],['O que dá valor','Confiança no governo e na economia','Ser raro e a confiança na rede'],['Quantidade','Sem limite','No máximo 21 milhões'],['Inflação','Meta de 3% ao ano','Cada vez menos moedas novas'],['Quem garante','A lei: todos têm que aceitar','Ninguém: vale o que pagarem']]}},
+
+  {id:'irbase',g:'ir',name:'Como declarar investimentos',icon:'receipt',color:2,one:'Na declaração, os investimentos aparecem sempre em 3 lugares.',
+    lines:[['wallet','<b>Bens e Direitos:</b> quanto você tinha no último dia do ano (31/12).'],['coins','<b>Rendimentos:</b> quanto o dinheiro rendeu. Pode ser "Isentos" ou "Tributação Exclusiva".'],['trend','<b>Renda Variável:</b> só se você vendeu ações, FIIs ou ETFs. Mês a mês.']]},
+  {id:'irinforme',g:'ir',name:'Informe de rendimentos',icon:'download',color:1,one:'É um documento que o banco e a corretora te dão com todos os números prontos.',
+    lines:[['calendar','Sai até o fim de fevereiro, no app ou no site do banco.'],['copy','Basta copiar os valores dele para a declaração.'],['alert','Em ações e FIIs, use o preço que você pagou, não o preço de hoje.']]},
+  {id:'irdarf',g:'ir',name:'DARF: quando você paga',icon:'alert',color:6,one:'DARF é a guia para você mesmo pagar o imposto. Só é preciso na bolsa.',
+    lines:[['check','Renda fixa e fundos: o banco já desconta. Você não paga DARF.'],['receipt','Ações (vendas acima de R$ 20 mil no mês), FIIs e ETFs com lucro: você gera a DARF (código 6015).'],['calendar','Vence no último dia útil do mês seguinte à venda.']]},
+  {id:'irtabela',g:'ir',name:'Imposto da renda fixa',icon:'calendar',color:3,one:'Quanto mais tempo o dinheiro fica, menos imposto você paga. E só sobre o que rendeu.',
+    rows:[['Até 6 meses','22,5%'],['De 6 meses a 1 ano','20%'],['De 1 a 2 anos','17,5%'],['Mais de 2 anos','15%']]}];
+// what each acronym stands for, shown at the top of its topic
+const SIG={
+  selic:[['Selic','Sistema Especial de Liquidação e de Custódia'],['Copom','Comitê de Política Monetária']],
+  cdi:[['CDI','Certificado de Depósito Interbancário']],
+  ipca:[['IPCA','Índice Nacional de Preços ao Consumidor Amplo']],
+  liq:[['D+2','"D" é o dia da venda e "+2" são os dias úteis até o dinheiro cair']],
+  fgc:[['FGC','Fundo Garantidor de Créditos']],
+  cdb:[['CDB','Certificado de Depósito Bancário']],
+  lci:[['LCI','Letra de Crédito Imobiliário'],['LCA','Letra de Crédito do Agronegócio']],
+  tesouro:[['IPCA+','a inflação (IPCA) mais uma taxa extra']],
+  acoes:[['BBAS3','o código da ação: 4 letras da empresa e um número. O 3 é ação ordinária (dá direito a voto); o 4 é preferencial (prioridade nos dividendos)'],['JCP','Juros sobre Capital Próprio, outra forma de a empresa dividir o lucro'],['DARF','Documento de Arrecadação de Receitas Federais']],
+  fii:[['FII','Fundo de Investimento Imobiliário'],['11','o número no fim do código dos FIIs, como em HGLG11']],
+  previd:[['PGBL','Plano Gerador de Benefício Livre'],['VGBL','Vida Gerador de Benefício Livre']],
+  etf:[['ETF','Exchange Traded Fund, ou "fundo negociado na bolsa"']],
+  cripto:[['BTC','abreviação de Bitcoin'],['GCAP','programa da Receita para calcular Ganhos de Capital']],
+  blockchain:[['Blockchain','"corrente de blocos", em inglês'],['Halving','"cortar pela metade", em inglês']],
+  irbase:[['IR','Imposto de Renda']],
+  irdarf:[['DARF','Documento de Arrecadação de Receitas Federais']]};
+const RISK=[['baixo','var(--pos)'],['médio','var(--warn)'],['alto','var(--neg)']];
+function learnItem(t,open){
+  const r=t.risk?RISK[t.risk-1]:null;
+  let b=SIG[t.id]?`<div class="lr-sig">${SIG[t.id].map(([k,v])=>`<div><b>${k}</b><span>${v}</span></div>`).join('')}</div>`:'';
+  b+=`<div class="lr-one">${t.one}</div>`;
+  if(t.like)b+=`<div class="lr-like">${ic('info')}<span>${t.like}</span></div>`;
+  if(r||t.tags)b+=`<div class="lr-tags">${r?`<span class="pill" style="--s:${r[1]}">Risco ${r[0]}</span>`:''}${(t.tags||[]).map(([k,v])=>`<span class="lr-tag"><small>${k}</small>${v}</span>`).join('')}</div>`;
+  if(t.lines)b+=`<div class="lr-lines">${t.lines.map(([i,s])=>`<div>${ic(i)}<span>${s}</span></div>`).join('')}</div>`;
+  if(t.rows)b+=`<div class="lr-rows">${t.rows.map(([k,v])=>`<div><span>${k}</span><b>${v}</b></div>`).join('')}</div>`;
+  if(t.cmp)b+=`<div class="lr-cmp"><span></span>${t.cmp.head.map(h=>`<b>${h}</b>`).join('')}${t.cmp.rows.map(([k,a,c])=>`<small>${k}</small><span>${a}</span><span>${c}</span>`).join('')}</div>`;
+  if(t.calc)b+=`<div class="calc"><div class="klabel">${ic('hash')}Exemplo com números</div>${t.calc.map((l,i)=>`<div>${i===t.calc.length-1?`<b>${l}</b>`:l}</div>`).join('')}</div>`;
+  if(t.pay)b+=`<div class="lr-ir"><div class="klabel">${ic('receipt')}No Imposto de Renda</div><div class="lr-pay">${t.pay}</div><div class="lr-lines">${t.decl.map(s=>`<div>${ic('chevR')}<span>${s}</span></div>`).join('')}</div></div>`;
+  return `<details class="lr" name="learn" id="lr-${t.id}" style="--c:var(--c${t.color})" ${open?'open':''}><summary><span class="gd-ico">${ic(t.icon)}</span><b>${t.name}</b>${ic('chevR','lr-chev')}</summary><div class="lr-body">${b}</div></details>`;
+}
+function sheetLearn(id){
+  openSheet('Aprenda do zero','book',`<div class="stack" style="gap:14px">${LEARN_GROUPS.map(([g,n,i])=>`<div><div class="klabel" style="margin-bottom:6px">${ic(i)}${n}</div><div class="lr-list">${LEARN.filter(t=>t.g===g).map(t=>learnItem(t,t.id===id)).join('')}</div></div>`).join('')}
+    <div class="disc">${ic('info')}<span>Números de exemplo (Selic e CDI de 14%). Os códigos são os do programa da Receita: confira sempre com o informe da sua corretora.</span></div></div>`);
+  if(id)setTimeout(()=>{const e=document.getElementById('lr-'+id);if(e)e.scrollIntoView({block:'start'})},60);
+}
+/* ---------- investment calculator ---------- */
+const CALC_TABS=[['rf','shield','Renda fixa'],['ac','trend','Ações'],['fii','building','FIIs']];
+const RF_KINDS=[['cdb','CDB / Tesouro'],['lci','LCI / LCA'],['poup','Poupança']];
+const irRate=n=>n<=6?22.5:n<=12?20:n<=24?17.5:15;
+const pct=v=>v.toLocaleString('pt-BR',{maximumFractionDigits:2})+'%';
+function calcState(){return S.calc??={t:'rf',rf:{kind:'cdb',ini:10000,pmt:500,pctCdi:110,cdi:14,months:24},ac:{ini:5000,pmt:500,price:22,dy:8,growth:5,years:10},fii:{ini:5000,pmt:500,price:100,yld:.8,years:10,want:3000}}}
+function cx(id,icon,val,cap,pre,suf){return `<label class="cxf"><small>${cap}</small><span class="fld">${pre==='R$'?'<span class="note">R$</span>':ic(icon)}<input id="cx_${id}" inputmode="decimal" value="${pre==='R$'?numIn(val):String(val).replace('.',',')}" aria-label="${cap}">${suf?`<span class="note">${suf}</span>`:''}</span></label>`}
+function calcView(){
+  const c=calcState(),t=c.t,v=c[t];let f;
+  if(t==='rf')f=`<div class="chips">${RF_KINDS.map(([k,n])=>`<button class="chip ${v.kind===k?'on':''}" data-act="rfKind" data-v="${k}">${n}</button>`).join('')}</div>
+    <div class="cxg">${cx('ini','wallet',v.ini,'Valor inicial','R$')}${cx('pmt','plus',v.pmt,'Aporte por mês','R$')}${cx('months','calendar',v.months,'Prazo','','meses')}
+    ${v.kind==='poup'?'':cx('pctCdi','landmark',v.pctCdi,'Rende','','% do CDI')}${cx('cdi','repeat',v.cdi,'CDI hoje','','% ao ano')}</div>`;
+  else if(t==='ac')f=`<div class="cxg">${cx('ini','wallet',v.ini,'Valor inicial','R$')}${cx('pmt','plus',v.pmt,'Aporte por mês','R$')}${cx('price','tag',v.price,'Preço da ação','R$')}
+    ${cx('dy','coins',v.dy,'Dividendos','','% ao ano')}${cx('growth','trend',v.growth,'Valorização','','% ao ano')}${cx('years','calendar',v.years,'Prazo','','anos')}</div>`;
+  else f=`<div class="cxg">${cx('ini','wallet',v.ini,'Valor inicial','R$')}${cx('pmt','plus',v.pmt,'Aporte por mês','R$')}${cx('price','tag',v.price,'Preço da cota','R$')}
+    ${cx('yld','coins',v.yld,'Rendimento','','% ao mês')}${cx('years','calendar',v.years,'Prazo','','anos')}${cx('want','target',v.want,'Renda que você quer','R$')}</div>`;
+  return `<div class="seg" role="tablist">${CALC_TABS.map(([k,i,n])=>`<button class="${t===k?'on':''}" role="tab" aria-selected="${t===k}" data-act="calcTab" data-v="${k}">${ic(i)}${n}</button>`).join('')}</div>${f}<div id="calcOut" class="stack" style="gap:12px">${calcOut()}</div>`;
+}
+const line=(a,b,cls='')=>`<div class="cl ${cls}"><span>${a}</span><b>${b}</b></div>`;
+function calcOut(){
+  const c=calcState(),t=c.t,v=c[t];
+  if(t==='rf'){
+    const n=Math.max(1,Math.round(v.months)),poup=v.kind==='poup';
+    const ann=poup?(v.cdi>8.5?Math.pow(1.005,12)-1:v.cdi*.7/100):v.cdi*v.pctCdi/10000,r=Math.pow(1+ann,1/12)-1;
+    let bal=v.ini;for(let k=0;k<n;k++)bal=bal*(1+r)+v.pmt;
+    const put=v.ini+v.pmt*n,gain=bal-put,tax=v.kind==='cdb'?irRate(n):0,ir=Math.max(0,gain)*tax/100,net=bal-ir;
+    let pb=v.ini;const pr=Math.pow(1+(v.cdi>8.5?Math.pow(1.005,12)-1:v.cdi*.7/100),1/12)-1;for(let k=0;k<n;k++)pb=pb*(1+pr)+v.pmt;
+    return `<div class="calc"><div class="klabel">${ic('hash')}A conta</div>
+      ${line('Taxa ao ano',poup?(v.cdi>8.5?'0,5% ao mês ≈ 6,17%':`70% de ${pct(v.cdi)} = ${pct(ann*100)}`):`${pct(v.cdi)} × ${pct(v.pctCdi)} = ${pct(ann*100)}`)}
+      ${line('Você coloca',`${money0(v.ini)} + ${money0(v.pmt)} × ${n} = ${money0(put)}`)}
+      ${line('Rendimento bruto',`+ ${money0(gain)}`,'pos')}
+      ${line(tax?`IR ${pct(tax)} (prazo de ${fmtMonths(n)})`:'IR','− '+money0(ir),tax?'neg':'')}
+      ${line('Você recebe',money0(net),'tot')}</div>
+      <div class="kv"><div><small>Colocou</small><b>${money0(put)}</b></div><div><small>Ganhou</small><b class="pos">+${money0(net-put)}</b></div><div data-tip="Mesmo valor e prazo na poupança"><small>Na poupança</small><b>${money0(pb)}</b></div></div>
+      <div class="note">${tax?'IR aproximado: na prática cada aporte tem seu próprio prazo.':poup?'Poupança é isenta de IR.':'LCI e LCA são isentas de IR.'}</div>`;
+  }
+  if(t==='ac'){
+    const n=Math.max(1,Math.round(v.years))*12,g=Math.pow(1+v.growth/100,1/12)-1;let p=v.price,sh=0,cash=v.ini,divs=0;
+    sh=Math.floor(cash/p);cash-=sh*p;const sh0=sh;
+    for(let k=0;k<n;k++){p*=1+g;const d=sh*p*v.dy/1200;divs+=d;cash+=v.pmt+d;const b=Math.floor(cash/p);sh+=b;cash-=b*p}
+    const put=v.ini+v.pmt*n,tot=sh*p+cash,mDiv=sh*p*v.dy/1200;
+    return `<div class="calc"><div class="klabel">${ic('hash')}A conta</div>
+      ${line('Cotas no início',`${money0(v.ini)} ÷ ${money(v.price)} = ${sh0} ações`)}
+      ${line('Preço no fim',`${money(v.price)} × (1 + ${pct(v.growth)})^${n/12} = ${money(p)}`)}
+      ${line('Dividendos por mês',`ações × preço × ${pct(v.dy)} ÷ 12`)}
+      ${line('Dividendos reinvestidos',`+ ${money0(divs)}`,'pos')}
+      ${line('Você terá',`${sh} ações × ${money(p)} = ${money0(tot)}`,'tot')}</div>
+      <div class="kv"><div><small>Colocou</small><b>${money0(put)}</b></div><div><small>Patrimônio</small><b class="pos">${money0(tot)}</b></div><div data-tip="Dividendos por mês no fim do prazo"><small>Renda/mês</small><b class="pos">${money0(mDiv)}</b></div></div>
+      <div class="note">Ações não têm rendimento garantido: valorização e dividendos aqui são suposições.</div>`;
+  }
+  const n=Math.max(1,Math.round(v.years))*12;let sh=Math.floor(v.ini/v.price),cash=v.ini-sh*v.price,inc=0;const sh0=sh;
+  for(let k=0;k<n;k++){const d=sh*v.price*v.yld/100;inc+=d;cash+=v.pmt+d;const b=Math.floor(cash/v.price);sh+=b;cash-=b*v.price}
+  const put=v.ini+v.pmt*n,tot=sh*v.price+cash,mInc=sh*v.price*v.yld/100,need=v.want/(v.yld/100),needSh=Math.ceil(need/v.price);
+  return `<div class="calc"><div class="klabel">${ic('hash')}A conta</div>
+      ${line('Cotas no início',`${money0(v.ini)} ÷ ${money(v.price)} = ${sh0} cotas`)}
+      ${line('Renda de 1 cota',`${money(v.price)} × ${pct(v.yld)} = ${money(v.price*v.yld/100)}/mês`)}
+      ${line('Rendimentos reinvestidos',`+ ${money0(inc)}`,'pos')}
+      ${line('No fim',`${sh} cotas × ${money(v.price*v.yld/100)} = ${money0(mInc)}/mês`,'tot')}</div>
+    <div class="calc"><div class="klabel">${ic('target')}Para ganhar ${money0(v.want)} por mês</div>
+      ${line('Precisa de',`${money0(v.want)} ÷ ${pct(v.yld)} = ${money0(need)}`)}
+      ${line('Em cotas',`${money0(need)} ÷ ${money(v.price)} = ${needSh.toLocaleString('pt-BR')} cotas`,'tot')}</div>
+    <div class="kv"><div><small>Colocou</small><b>${money0(put)}</b></div><div><small>Patrimônio</small><b class="pos">${money0(tot)}</b></div><div data-tip="Rendimento por mês no fim, isento de IR"><small>Renda/mês</small><b class="pos">${money0(mInc)}</b></div></div>
+    <div class="note">Considera o preço da cota estável. O rendimento de FII é isento de IR e pode variar.</div>`;
+}
 function projCard(x){
   const p=x.p,[sl,si,sc]=STATUS[x.status],pr=PROFILES[p.profile||'moderado'];
   let h=`<div class="card stack" style="gap:12px"><div class="pj-h">${ic(p.icon||'target')}<span class="ttl">${esc(p.name)}</span><span class="pill" style="--s:${sc}">${ic(si)}${sl}</span><button class="ib" data-act="editProject" data-v="${p.id}" data-tip="Editar projeto" aria-label="Editar projeto">${ic('pencil')}</button></div>
@@ -1080,6 +1327,10 @@ function vProj(){
     <label class="fld" data-tip="Rendimento ao ano">${ic('trend')}<input id="sim_rate" inputmode="decimal" value="${String(S.sim.rate).replace('.',',')}" aria-label="Rendimento ao ano"><span class="note">% a.a.</span></label>
     <label class="fld" data-tip="Prazo em anos">${ic('calendar')}<input id="sim_years" type="number" min="1" max="50" value="${S.sim.years}" aria-label="Prazo em anos"><span class="note">anos</span></label></div>
     <div id="simOut">${simOut()}</div><div class="legend"><span style="--c:var(--c1)">Aportado</span><span style="--c:var(--c3)">Rendimento</span></div><div class="chart" data-chart="sim"></div></div>`;
+  h+=`<div class="sec"><h2>${ic('book')}Aprenda do zero</h2></div><div class="card stack" style="gap:12px">
+    <button class="learn-cta" data-act="learn"><span class="gd-ico" style="--c:var(--accent)">${ic('book')}</span><span><b>Nunca investiu? Comece aqui</b><small>O que é cada investimento e o que declarar no IR</small></span>${ic('chevR')}</button>
+    <div class="chips">${['selic','cdi','cdb','lci','tesouro','acoes','fii','lastro','irbase'].map(id=>{const t=LEARN.find(x=>x.id===id);return `<button class="chip" data-act="learn" data-v="${id}">${ic(t.icon)}${t.id==='irbase'?'Imposto de Renda':t.name.replace(/ \(.*\)/,'')}</button>`}).join('')}</div></div>`;
+  h+=`<div class="sec"><h2>${ic('hash')}Calculadora</h2></div><div class="card stack" style="gap:12px">${calcView()}</div>`;
   h+=`<div class="disc">${ic('info')}<span>Sugestões educativas, calculadas a partir do prazo, do seu perfil e de uma taxa estimada. Elas não substituem um profissional certificado, e rentabilidade passada não garante resultado futuro.</span></div></div>`;
   return h;
 }
@@ -1511,6 +1762,9 @@ const ACT={
   showDis:()=>{S.showDis=!S.showDis;render()},
   move:v=>{const [id,s]=v.split(':');sheetMove(id,+s)},
   pview:v=>{S.cfg.projView=v;save('cfg')},
+  learn:v=>sheetLearn(v),
+  calcTab:v=>{calcState().t=v;render()},
+  rfKind:v=>{calcState().rf.kind=v;render()},
   bview:v=>{S.cfg.billView=v;save('cfg')},
   kcol:v=>{const [kb,c]=v.split('|');S.kcol[kb]=c;render()},
   kadv:v=>{const [kb,id]=v.split('|');kAdvance(kb,id)},
@@ -1523,7 +1777,7 @@ const ACT={
   update:()=>applyUpdate(),
   updateLater:()=>{UPD.dismissed=true;closeSheet()},
   install:async()=>{if(!BIP){sheetIOSInstall();return}const e=BIP;BIP=null;try{await e.prompt();const r=await e.userChoice;if(r&&r.outcome!=='accepted')BIP=null}catch(_){}render()},
-  installLater:()=>{try{localStorage.setItem(INST_KEY,String(Date.now()))}catch(e){}render();toast('Você pode instalar depois em Ajustes')},
+  installLater:()=>{try{localStorage.setItem(INST_KEY,String(Date.now()))}catch(e){}render();toast('Você pode instalar depois em Configurações')},
   newEntry:()=>openSheet('Novo lançamento','plus',`<div class="stack" style="gap:4px">${[
     ['addExp','minus','var(--neg)','Gasto','Mercado, restaurante, farmácia…'],
     ['addExtra','plus','var(--pos)','Entrada do mês','Bônus, venda, reembolso…'],
@@ -1572,6 +1826,9 @@ document.addEventListener('click',e=>{
   const f=ACT[b.dataset.act];if(f){e.preventDefault();hideTip();f(b.dataset.v,b)}
 },true);
 document.addEventListener('submit',e=>{e.preventDefault();if(SUBMIT)SUBMIT()});
+document.addEventListener('input',e=>{const id=e.target.id;if(!id||!id.startsWith('cx_')||!S.calc)return;
+  const a=parseMoney(e.target.value),c=S.calc[S.calc.t],k=id.slice(3);if(k in c&&a>=0&&a<1e9)c[k]=a;
+  const o=$('#calcOut');if(o)o.innerHTML=calcOut()});
 document.addEventListener('input',e=>{const id=e.target.id;if(!id||!id.startsWith('sim_')||!S.sim)return;
   if(id==='sim_pmt'){const a=parseMoney(e.target.value);if(a>=0)S.sim.pmt=a}
   if(id==='sim_rate'){const a=parseFloat(e.target.value.replace(',','.'));if(a>=0&&a<100)S.sim.rate=a}
